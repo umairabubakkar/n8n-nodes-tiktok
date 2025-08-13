@@ -19,7 +19,7 @@
     "node": ">=18.10",
     "pnpm": ">=9.1"
   },
-  "packageManager": "pnpm@9.1.4",
+  "packageManager": "pnpm@10.2.0",
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -43,22 +43,22 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "^22.5.4",
-    "@typescript-eslint/parser": "^7.15.0",
-    "eslint": "^8.56.0",
-    "eslint-plugin-n8n-nodes-base": "^1.16.1",
-    "gulp": "^4.0.2",
+    "@types/node": "^22.13.1",
+    "@typescript-eslint/parser": "^8.23.0",
+    "eslint": "^9.19.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.3",
+    "gulp": "^5.0.0",
     "n8n-workflow": "*",
-    "prettier": "^3.3.2",
-    "typescript": "^5.5.3"
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.3"
   },
   "peerDependencies": {
     "n8n-workflow": "*"
   },
   "dependencies": {
-    "eslint-config-riot": "^1.0.0",
-    "eslint-scope": "^7.2.2",
-    "eslint-visitor-keys": "^3.4.3"
+    "eslint-config-riot": "^4.1.2",
+    "eslint-scope": "^8.2.0",
+    "eslint-visitor-keys": "^4.2.0"
   },
   "bugs": {
     "url": "https://github.com/igabm/n8n-nodes-tiktok/issues"
