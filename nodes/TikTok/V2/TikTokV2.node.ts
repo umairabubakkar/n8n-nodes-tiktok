@@ -1,14 +1,15 @@
 import {
-	NodeConnectionType,
-	type IDataObject,
-	type IExecuteFunctions,
-	type ILoadOptionsFunctions,
-	type INodeExecutionData,
-	type INodePropertyOptions,
-	type INodeType,
-	type INodeTypeBaseDescription,
-	type INodeTypeDescription,
-	type JsonObject,
+        NodeConnectionType,
+        NodeOperationError,
+        type IDataObject,
+        type IExecuteFunctions,
+        type ILoadOptionsFunctions,
+        type INodeExecutionData,
+        type INodePropertyOptions,
+        type INodeType,
+        type INodeTypeBaseDescription,
+        type INodeTypeDescription,
+        type JsonObject,
 } from 'n8n-workflow';
 
 import { videoPostFields, videoPostOperations } from './VideoPostDescription'; // Assume VideoPostDescription file handles video posting
@@ -150,7 +151,10 @@ export class TikTokV2 implements INodeType {
                                         if (operation === 'get') {
                                                 const fields = this.getNodeParameter('fields', i) as string[];
                                                 if (!fields?.length) {
-                                                        throw new Error('User Profile: "Fields" must include at least one selection.');
+                                                        throw new NodeOperationError(
+                                                                this.getNode(),
+                                                                'User Profile: "Fields" must include at least one selection.',
+                                                        );
                                                 }
                                                 const qs: IDataObject = { fields: fields.join(',') };
                                                 responseData = await tiktokApiRequest.call(this, 'GET', '/user/info/', {}, qs);
