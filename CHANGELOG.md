@@ -1,3 +1,11 @@
+## [1.1.4](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.3...v1.1.4) (2025-08-14)
+
+
+### Bug Fixes
+
+* ensure required OAuth client ID ([017ea97](https://github.com/igabm/n8n-nodes-tiktok/commit/017ea97096c6fba4f5a41646888dd1845a5a0b7e))
+* initialize grant type for tiktok oauth ([e16cfc2](https://github.com/igabm/n8n-nodes-tiktok/commit/e16cfc256f8189bbc0a16d8c3318292694c15653))
+
 ## [1.1.3](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.2...v1.1.3) (2025-08-14)
 
 
