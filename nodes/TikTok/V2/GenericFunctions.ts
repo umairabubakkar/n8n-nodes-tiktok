@@ -3,10 +3,10 @@ import type {
 	IExecuteFunctions,
 	IHookFunctions,
 	ILoadOptionsFunctions,
-	INodeParameterResourceLocator,
-	JsonObject,
-	IRequestOptions,
-	IHttpRequestMethods,
+        INodeParameterResourceLocator,
+        JsonObject,
+        IRequestOptions,
+        IHttpRequestMethods,
 } from 'n8n-workflow';
 import { ApplicationError, NodeApiError } from 'n8n-workflow';
 import { URL } from 'url';
@@ -44,9 +44,13 @@ export async function tiktokApiRequest(
 			const { data } = await this.helpers.requestOAuth2.call(this, 'tiktokOAuth2Api', options);
 			return data;
 		}
-	} catch (error) {
-		throw new NodeApiError(this.getNode(), error as JsonObject);
-	}
+        } catch (error) {
+                // Wrap unknown errors to avoid accessing properties on undefined
+                const errObject: JsonObject = error instanceof Error
+                        ? { message: error.message }
+                        : { message: String(error) };
+                throw new NodeApiError(this.getNode(), errObject);
+        }
 }
 
 export async function tiktokApiRequestAllItems(
