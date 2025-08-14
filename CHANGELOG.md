@@ -1,3 +1,31 @@
+# 1.0.0 (2025-08-14)
+
+
+### Bug Fixes
+
+* address review feedback ([5f99da7](https://github.com/igabm/n8n-nodes-tiktok/commit/5f99da72998312468f036d7abb638fd98b8e907d))
+* **auth:** change the implementation of oauth ([530b2ea](https://github.com/igabm/n8n-nodes-tiktok/commit/530b2ea166a69dc5ab58f83596c30d7db0f7c85f))
+* **auth:** change the implementation of oauth ([4b20506](https://github.com/igabm/n8n-nodes-tiktok/commit/4b20506aae6c9fa709d84c8706b9b93a07292de8))
+* **auth:** change the implementation of oauth ([fd27187](https://github.com/igabm/n8n-nodes-tiktok/commit/fd27187a081d66b11f3adec2a559a4bb5c97dd69))
+* **build:** add scope ([1d30e8a](https://github.com/igabm/n8n-nodes-tiktok/commit/1d30e8a03f113b482041b8ea223f0e0e791caa87))
+* **build:** build issues linted from builder ([e570551](https://github.com/igabm/n8n-nodes-tiktok/commit/e570551492f1ab5057a1d351df4d0546d4eb249e))
+* **build:** version ([f575421](https://github.com/igabm/n8n-nodes-tiktok/commit/f575421f62d09bbb601991e222d0ab9ed5548c85))
+* **ci:** permission to push release ([a2dafa2](https://github.com/igabm/n8n-nodes-tiktok/commit/a2dafa28ce9fc55c40940d90d781d926bb9ec5b9))
+* **ci:** principal branch is master ([d00e995](https://github.com/igabm/n8n-nodes-tiktok/commit/d00e995cc09b3d8a33cba672bcb5a6ef85ae83d3))
+* **code:** fix lint ([51a7b9e](https://github.com/igabm/n8n-nodes-tiktok/commit/51a7b9e9a91e9bf7c1341f9f8870417b0b51ecdc))
+* **credentials:** seems wrong type is currently used ([efe7d4b](https://github.com/igabm/n8n-nodes-tiktok/commit/efe7d4b03736ad8fc2a6769ee4d61c89c62f7bde))
+* **module:** classname ([4e73775](https://github.com/igabm/n8n-nodes-tiktok/commit/4e7377503e9cec60c12f9a9c18c4cb387304f6b8))
+* **module:** export module ([d3b6736](https://github.com/igabm/n8n-nodes-tiktok/commit/d3b673655787e631acf9be3c18bb270252d38860))
+* send form-encoded token payload ([7007ddd](https://github.com/igabm/n8n-nodes-tiktok/commit/7007ddd21fc8b7f8791e66cb0941c010c555cbfc))
+* throw NodeOperationError for missing profile fields ([75f0bab](https://github.com/igabm/n8n-nodes-tiktok/commit/75f0babc229080202880a49ccad0e362c63e3ed0))
+* url-encode OAuth token request ([bb5550d](https://github.com/igabm/n8n-nodes-tiktok/commit/bb5550dbd90270ca9e81def8bc1362b58f7aee2d))
+
+
+### Features
+
+* **initial:** initial TikTok modules (to be tested) ([1ab0df5](https://github.com/igabm/n8n-nodes-tiktok/commit/1ab0df53a8bf2717f658b96ef2ac0fe74481cf27))
+* support tiktok oauth2 credentials ([0e9d4dc](https://github.com/igabm/n8n-nodes-tiktok/commit/0e9d4dcd0717086fbec57807b230b24a1bff93b6))
+
 # Changelog
 
 All notable changes to this project will be documented in this file. The format is based on [Conventional Commits](https://www.conventionalcommits.org/) and this project uses [semantic-release](https://github.com/semantic-release/semantic-release).
