@@ -28,7 +28,7 @@
     "format": "prettier nodes credentials --write",
     "lint": "eslint nodes credentials package.json",
     "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "pnpm build && eslint -c eslint.config.prepublish.mjs nodes credentials package.json",
+    "prepublishOnly": "pnpm build && pnpm lint -c .eslintrc.prepublish.js nodes credentials package.json",
     "release": "semantic-release"
   },
   "files": [
@@ -51,24 +51,17 @@
     "@semantic-release/npm": "^12.0.2",
     "@semantic-release/release-notes-generator": "^14.0.3",
     "@types/node": "^22.13.1",
-    "@typescript-eslint/parser": "^8.23.0",
-    "eslint": "^9.19.0",
+    "@typescript-eslint/parser": "~8.32.0",
+    "eslint": "^8.57.0",
     "eslint-plugin-n8n-nodes-base": "^1.16.3",
     "gulp": "^5.0.0",
     "n8n-workflow": "*",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.3",
     "semantic-release": "^24.2.7",
-    "typescript": "^5.7.3",
-    "globals": "^16.3.0",
-    "jsonc-eslint-parser": "^2.4.0"
+    "typescript": "~5.8.2"
   },
   "peerDependencies": {
     "n8n-workflow": "*"
-  },
-  "dependencies": {
-    "eslint-config-riot": "^4.1.2",
-    "eslint-scope": "^8.2.0",
-    "eslint-visitor-keys": "^4.2.0"
   },
   "bugs": {
     "url": "https://github.com/igabm/n8n-nodes-tiktok/issues"
