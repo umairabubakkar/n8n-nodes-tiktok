@@ -22,7 +22,8 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 The TikTok node supports the following operations:
 - **Video Post**: Upload or delete a video to/from TikTok.
-- **Photo Post**: Upload a photo to TikTok.
+- **Photo Post**: Upload a photo from a verified URL to TikTok.
+- **User Profile**: Retrieve profile information and statistics for the authenticated user.
 
 ## Credentials
 
@@ -30,7 +31,9 @@ To use this node, you need to authenticate with TikTok via OAuth2.
 1. Create a TikTok Developer account and register an app.
 2. Add the **Content Posting API** product to your app.
 3. Obtain the required OAuth2 credentials for the app and configure them in n8n.
-4. Ensure your app has been approved for the `video.upload` and `video.publish` scopes.
+4. Ensure your app has been approved for the `video.upload`, `video.publish`, and Display API scopes such as `user.info.basic`, `user.info.profile`, and `user.info.stats`.
+
+> **Breaking:** Updating to v1.1.0 changes the default OAuth scopes. Reauthorize existing TikTok credentials after upgrading.
 
 For detailed instructions on obtaining the credentials, refer to the [TikTok API Documentation](https://developers.tiktok.com/doc/oauth-user-access-token-management).
 
@@ -62,3 +65,4 @@ pnpm publish  --access public
 ## Version history
 
 - **1.0.0**: Initial release with support for uploading and deleting TikTok videos and uploading photos.
+- **1.1.0**: Added Display API support to retrieve user profile information.

@@ -56,12 +56,14 @@ export class TikTokOAuth2Api implements ICredentialType {
                         default: '',
                         description: 'The secret key associated with your application.',
                 },
-                {
-                        displayName: 'Scope',
-                        name: 'scope',
-                        type: 'string',
-                        default: '',
-                },
+               {
+                       displayName: 'Scope',
+                       name: 'scope',
+                       type: 'string',
+                       default: 'video.upload,video.publish,user.info.basic,user.info.profile,user.info.stats',
+                       description:
+                               'Comma-separated OAuth scopes to request during authorization. Adjust based on the resources you plan to use.',
+               },
                 {
                         displayName: 'Auth URI Query Parameters',
                         name: 'authQueryParameters',
@@ -115,10 +117,10 @@ export class TikTokOAuth2Api implements ICredentialType {
 	};
 
 	// Credential test request to validate connection
-	test: ICredentialTestRequest = {
-		request: {
-			baseURL: 'https://open.tiktokapis.com',
-			url: '/v2/user/info/',
-		},
-	};
+        test: ICredentialTestRequest = {
+                request: {
+                        baseURL: 'https://open.tiktokapis.com',
+                        url: '/v2/user/info/?fields=username',
+                },
+        };
 }
