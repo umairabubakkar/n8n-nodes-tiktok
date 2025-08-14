@@ -33,6 +33,12 @@ export class TikTokOAuth2Api implements ICredentialType {
                         default: 'https://open.tiktokapis.com/v2/oauth/token/',
                 },
                 {
+                        displayName: 'Grant Type',
+                        name: 'grantType',
+                        type: 'hidden',
+                        default: 'authorizationCode',
+                },
+                {
                        displayName: 'Client Key',
                        name: 'clientId',
                        type: 'string',
