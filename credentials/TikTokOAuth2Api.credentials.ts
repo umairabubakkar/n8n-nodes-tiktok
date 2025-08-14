@@ -75,8 +75,9 @@ export class TikTokOAuth2Api implements ICredentialType {
                 const url = 'https://open.tiktokapis.com/v2/oauth/token/';
                 const oauthData = credentials.oauthTokenData as any;
 
+               const clientKeyFromCreds = (credentials.clientKey ?? credentials.clientId) as string;
                const body: Record<string, string> = {
-                       client_key: credentials.clientId as string,
+                       client_key: clientKeyFromCreds,
                        client_secret: credentials.clientSecret as string,
                };
 
