@@ -6,6 +6,7 @@ export const userProfileOperations: INodeProperties[] = [
                 name: 'operation',
                 type: 'options',
                 noDataExpression: true,
+                required: true,
                 displayOptions: {
                         show: {
                                 resource: ['userProfile'],
@@ -36,7 +37,6 @@ export const userProfileFields: INodeProperties[] = [
                 displayOptions: {
                         show: {
                                 resource: ['userProfile'],
-                                operation: ['get'],
                         },
                 },
                 description: 'Select the profile fields to include in the response',
