@@ -1,5 +1,5 @@
 module.exports = {
-  branches: ['main'],
+  branches: ['master'],
   repositoryUrl: 'https://github.com/igabm/n8n-nodes-tiktok',
   plugins: [
     '@semantic-release/commit-analyzer',
