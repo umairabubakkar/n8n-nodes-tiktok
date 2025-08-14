@@ -4,6 +4,7 @@ import type {
         ICredentialTestRequest,
         ICredentialType,
         IHttpRequestHelper,
+        IHttpRequestOptions,
         INodeProperties,
 } from 'n8n-workflow';
 
@@ -91,11 +92,19 @@ export class TikTokOAuth2Api implements ICredentialType {
                         body.grant_type = 'refresh_token';
                 }
 
-                const { access_token, refresh_token } = (await this.helpers.httpRequest({
-                        method: 'POST',
-                        url,
-                        form: body,
-                })) as { access_token: string; refresh_token: string };
+               const options: IHttpRequestOptions = {
+                       method: 'POST',
+                       url,
+                       headers: {
+                               'Content-Type': 'application/x-www-form-urlencoded',
+                       },
+                       body: new URLSearchParams(body).toString(),
+               };
+
+               const { access_token, refresh_token } = (await this.helpers.httpRequest(options)) as {
+                       access_token: string;
+                       refresh_token: string;
+               };
 
                 return {
                         accessToken: access_token,
