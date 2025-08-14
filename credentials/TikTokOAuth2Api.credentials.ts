@@ -32,15 +32,9 @@ export class TikTokOAuth2Api implements ICredentialType {
                         type: 'hidden',
                         default: 'https://open.tiktokapis.com/v2/oauth/token/',
                 },
-		{
-			displayName: 'Grant Type',
-			name: 'grantType',
-			type: 'hidden',
-			default: 'authorizationCode',
-		},
                 {
                        displayName: 'Client Key',
-                       name: 'clientKey',
+                       name: 'clientId',
                        type: 'string',
                        typeOptions: {
                                password: true,
@@ -72,7 +66,7 @@ export class TikTokOAuth2Api implements ICredentialType {
                        displayName: 'Auth URI Query Parameters',
                        name: 'authQueryParameters',
                        type: 'hidden',
-                       default: 'client_key={{CLIENT_KEY}}',
+                       default: 'client_key={{CLIENT_ID}}',
                },
        ];
 
@@ -82,7 +76,7 @@ export class TikTokOAuth2Api implements ICredentialType {
                 const oauthData = credentials.oauthTokenData as any;
 
                const body: Record<string, string> = {
-                       client_key: credentials.clientKey as string,
+                       client_key: credentials.clientId as string,
                        client_secret: credentials.clientSecret as string,
                };
 
