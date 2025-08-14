@@ -11,6 +11,9 @@
 ### Bug Fixes
 
 * expose user profile action and improve oauth UX ([b6ec30a](https://github.com/igabm/n8n-nodes-tiktok/commit/b6ec30ab23735071a5c61e7526af4a2ef09afc19))
+* fix client key OAuth parameter naming
+* ensure grant type is initialized for TikTok credential
+* ensure required OAuth client ID field is present for TikTok credential
 
 ## [1.1.1](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.0...v1.1.1) (2025-08-14)
 

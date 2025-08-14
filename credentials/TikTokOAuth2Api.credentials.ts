@@ -20,18 +20,12 @@ export class TikTokOAuth2Api implements ICredentialType {
         icon = { light: 'file:icons/TikTok.svg', dark: 'file:icons/TikTok.dark.svg' } as const;
 
         properties: INodeProperties[] = [
-                {
-                        displayName: 'Grant Type',
-                        name: 'grantType',
-                        type: 'hidden',
-                        default: 'authorizationCode',
-                },
-                {
-                        displayName: 'Authorization URL',
-                        name: 'authUrl',
-                        type: 'hidden',
-                        default: 'https://www.tiktok.com/v2/auth/authorize/',
-                },
+               {
+                       displayName: 'Authorization URL',
+                       name: 'authUrl',
+                       type: 'hidden',
+                       default: 'https://www.tiktok.com/v2/auth/authorize/',
+               },
                 {
                         displayName: 'Access Token URL',
                         name: 'accessTokenUrl',
@@ -39,8 +33,14 @@ export class TikTokOAuth2Api implements ICredentialType {
                         default: 'https://open.tiktokapis.com/v2/oauth/token/',
                 },
                 {
+                        displayName: 'Grant Type',
+                        name: 'grantType',
+                        type: 'hidden',
+                        default: 'authorizationCode',
+                },
+                {
                        displayName: 'Client Key',
-                       name: 'clientKey',
+                       name: 'clientId',
                        type: 'string',
                        typeOptions: {
                                password: true,
@@ -72,7 +72,7 @@ export class TikTokOAuth2Api implements ICredentialType {
                        displayName: 'Auth URI Query Parameters',
                        name: 'authQueryParameters',
                        type: 'hidden',
-                       default: 'client_key={{CLIENT_KEY}}',
+                       default: 'client_key={{CLIENT_ID}}',
                },
        ];
 
@@ -80,9 +80,9 @@ export class TikTokOAuth2Api implements ICredentialType {
         async preAuthentication(this: IHttpRequestHelper, credentials: ICredentialDataDecryptedObject) {
                 const url = 'https://open.tiktokapis.com/v2/oauth/token/';
                 const oauthData = credentials.oauthTokenData as any;
-
+               const clientKeyFromCreds = (credentials.clientKey ?? credentials.clientId) as string;
                const body: Record<string, string> = {
-                       client_key: credentials.clientKey as string,
+                       client_key: clientKeyFromCreds,
                        client_secret: credentials.clientSecret as string,
                };
 
