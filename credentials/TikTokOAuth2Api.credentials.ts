@@ -94,10 +94,7 @@ export class TikTokOAuth2Api implements ICredentialType {
                 const { access_token, refresh_token } = (await this.helpers.httpRequest({
                         method: 'POST',
                         url,
-                        body,
-                        headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded',
-                        },
+                        form: body,
                 })) as { access_token: string; refresh_token: string };
 
                 return {
