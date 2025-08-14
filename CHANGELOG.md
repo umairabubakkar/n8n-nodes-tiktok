@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.2...v1.1.3) (2025-08-14)
+
+
+### Bug Fixes
+
+* rename client key field ([8c480ea](https://github.com/igabm/n8n-nodes-tiktok/commit/8c480ea5fde1dad06f7776f97ef8154f023c57b9))
+
 ## [1.1.2](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.1...v1.1.2) (2025-08-14)
 
 

@@ -80,7 +80,6 @@ export class TikTokOAuth2Api implements ICredentialType {
         async preAuthentication(this: IHttpRequestHelper, credentials: ICredentialDataDecryptedObject) {
                 const url = 'https://open.tiktokapis.com/v2/oauth/token/';
                 const oauthData = credentials.oauthTokenData as any;
-
                const clientKeyFromCreds = (credentials.clientKey ?? credentials.clientId) as string;
                const body: Record<string, string> = {
                        client_key: clientKeyFromCreds,
