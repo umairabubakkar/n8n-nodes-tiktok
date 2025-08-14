@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.0...v1.1.1) (2025-08-14)
+
+
+### Bug Fixes
+
+* guard against undefined errors ([afdc0a5](https://github.com/igabm/n8n-nodes-tiktok/commit/afdc0a52cc4d86d6a05d6ac8607cd15d66200cbf))
+* show user profile operation ([2861ff5](https://github.com/igabm/n8n-nodes-tiktok/commit/2861ff5eadd3e04e765b6177565808be677fc67b))
+
 # [1.1.0](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.0.0...v1.1.0) (2025-08-14)
 
 
