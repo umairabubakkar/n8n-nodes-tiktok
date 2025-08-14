@@ -13,6 +13,7 @@ import {
 
 import { videoPostFields, videoPostOperations } from './VideoPostDescription'; // Assume VideoPostDescription file handles video posting
 import { photoPostFields, photoPostOperations } from './PhotoPostDescription'; // Assume PhotoPostDescription file handles photo posting
+import { userProfileFields, userProfileOperations } from './UserProfileDescription';
 
 import {
 	tiktokApiRequest,
@@ -25,7 +26,7 @@ export class TikTokV2 implements INodeType {
 		this.description = {
 			...baseDescription,
 			version: 2,
-			description: 'Upload and manage TikTok videos and photos',
+                        description: 'Upload and manage TikTok videos and photos, and retrieve profile information',
 			subtitle: '={{$parameter["operation"] + ":" + $parameter["resource"]}}',
 			defaults: {
 				name: 'TikTok',
@@ -44,29 +45,37 @@ export class TikTokV2 implements INodeType {
 					name: 'resource',
 					type: 'options',
 					noDataExpression: true,
-					options: [
-						{
-							name: 'Video Post',
-							value: 'videoPost',
-							description: 'Upload a video to TikTok',
-						},
-						{
-							name: 'Photo Post',
-							value: 'photoPost',
-							description: 'Upload a photo to TikTok',
-						},
-					],
+                                        options: [
+                                                {
+                                                        name: 'Video Post',
+                                                        value: 'videoPost',
+                                                        description: 'Upload a video to TikTok',
+                                                },
+                                                {
+                                                        name: 'Photo Post',
+                                                        value: 'photoPost',
+                                                        description: 'Upload a photo to TikTok',
+                                                },
+                                                {
+                                                        name: 'User Profile',
+                                                        value: 'userProfile',
+                                                        description: 'Retrieve profile data of a TikTok user',
+                                                },
+                                        ],
 					default: 'videoPost',
 				},
-				// VIDEO POST
-				...videoPostOperations,
-				...videoPostFields,
-				// PHOTO POST
-				...photoPostOperations,
-				...photoPostFields,
-			],
-		};
-	}
+                                // VIDEO POST
+                                ...videoPostOperations,
+                                ...videoPostFields,
+                                // PHOTO POST
+                                ...photoPostOperations,
+                                ...photoPostFields,
+                                // USER PROFILE
+                                ...userProfileOperations,
+                                ...userProfileFields,
+                        ],
+                };
+        }
 
 	methods = {
 		loadOptions: {
@@ -106,15 +115,26 @@ export class TikTokV2 implements INodeType {
 					}
 				}
 
-				if (resource === 'photoPost') {
-					if (operation === 'upload') {
-						const photoUrl = this.getNodeParameter('photoUrl', i) as string;
-						const body: IDataObject = {
-							photoUrl,
-						};
-						responseData = await tiktokApiRequest.call(this, 'POST', '/photo/upload', body);
-					}
-				}
+                                if (resource === 'photoPost') {
+                                        if (operation === 'upload') {
+                                                const photoUrl = this.getNodeParameter('photoUrl', i) as string;
+                                                const body: IDataObject = {
+                                                        photoUrl,
+                                                };
+                                                responseData = await tiktokApiRequest.call(this, 'POST', '/photo/upload', body);
+                                        }
+                                }
+
+                                if (resource === 'userProfile') {
+                                        if (operation === 'get') {
+                                                const fields = this.getNodeParameter('fields', i) as string[];
+                                                const qs: IDataObject = {};
+                                                if (fields.length) {
+                                                        qs.fields = fields.join(',');
+                                                }
+                                                responseData = await tiktokApiRequest.call(this, 'GET', '/user/info/', {}, qs);
+                                        }
+                                }
 
 				const executionData = this.helpers.constructExecutionMetaData(
 					this.helpers.returnJsonArray(responseData as IDataObject[]),

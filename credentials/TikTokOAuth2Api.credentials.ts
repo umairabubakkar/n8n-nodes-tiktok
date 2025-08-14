@@ -56,12 +56,12 @@ export class TikTokOAuth2Api implements ICredentialType {
                         default: '',
                         description: 'The secret key associated with your application.',
                 },
-                {
-                        displayName: 'Scope',
-                        name: 'scope',
-                        type: 'string',
-                        default: '',
-                },
+               {
+                       displayName: 'Scope',
+                       name: 'scope',
+                       type: 'string',
+                        default: 'user.info.basic,user.info.profile,user.info.stats',
+               },
                 {
                         displayName: 'Auth URI Query Parameters',
                         name: 'authQueryParameters',
