@@ -2,7 +2,7 @@ import type { INodeProperties } from 'n8n-workflow';
 
 export const userProfileOperations: INodeProperties[] = [
         {
-                displayName: 'Operation',
+                displayName: 'Action',
                 name: 'operation',
                 type: 'options',
                 noDataExpression: true,
@@ -14,10 +14,10 @@ export const userProfileOperations: INodeProperties[] = [
                 },
                 options: [
                         {
-                                name: 'Get',
+                                name: 'Get User Information',
                                 value: 'get',
                                 description: 'Get profile information for the authenticated user',
-                                action: 'Get profile',
+                                action: 'Get user information',
                         },
                 ],
                 default: 'get',
@@ -37,6 +37,7 @@ export const userProfileFields: INodeProperties[] = [
                 displayOptions: {
                         show: {
                                 resource: ['userProfile'],
+                                operation: ['get'],
                         },
                 },
                 description: 'Select the profile fields to include in the response',
