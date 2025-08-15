@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.2.0...v1.2.1) (2025-08-15)
+
+
+### Bug Fixes
+
+* **typo:** indent+properties doublon ([df76b28](https://github.com/igabm/n8n-nodes-tiktok/commit/df76b2881737b87eb8a0736ad17841eb310b52bb))
+
 # [1.2.0](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.5...v1.2.0) (2025-08-15)
 
 
