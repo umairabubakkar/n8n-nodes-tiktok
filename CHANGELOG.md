@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.2.1...v1.2.2) (2025-08-15)
+
+
+### Bug Fixes
+
+* **auth:** access token properly handled ([2a64d3f](https://github.com/igabm/n8n-nodes-tiktok/commit/2a64d3f6b0f93e823c0749185ffb95b66a847a84))
+
 ## [1.2.1](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.2.0...v1.2.1) (2025-08-15)
 
 
