@@ -20,31 +20,18 @@ export class TikTokOAuth2Api implements ICredentialType {
         icon = { light: 'file:icons/TikTok.svg', dark: 'file:icons/TikTok.dark.svg' } as const;
 
         properties: INodeProperties[] = [
-               {
-                       displayName: 'Authorization URL',
-                       name: 'authUrl',
-                       type: 'hidden',
-                       default: 'https://www.tiktok.com/v2/auth/authorize/',
-               },
-							 {
-												displayName: 'Authentication',
-												name: 'authentication',
-												type: 'options',
-												options: [
-													{
-														name: 'Body',
-														value: 'body',
-														description: 'Send credentials in body',
-													},
-													{
-														name: 'Header',
-														value: 'header',
-														description: 'Send credentials as Basic Auth header',
-													},
-												],
+                {
+                        displayName: 'Authorization URL',
+                        name: 'authUrl',
                         type: 'hidden',
-												default: 'header',
-								},
+                        default: 'https://www.tiktok.com/v2/auth/authorize/',
+                },
+                {
+                        displayName: 'Authentication',
+                        name: 'authentication',
+                        type: 'hidden',
+                        default: 'header',
+                },
                 {
                         displayName: 'Access Token URL',
                         name: 'accessTokenUrl',
@@ -58,16 +45,16 @@ export class TikTokOAuth2Api implements ICredentialType {
                         default: 'authorizationCode',
                 },
                 {
-                       displayName: 'Client Key',
-                       name: 'clientId',
-                       type: 'string',
-                       typeOptions: {
-                               password: true,
-                       },
-                       required: true,
-                       default: '',
-                       description: 'The unique key provided to your application in TikTok Developer portal. (Client Key)',
-               },
+                        displayName: 'Client Key',
+                        name: 'clientId',
+                        type: 'string',
+                        typeOptions: {
+                                password: true,
+                        },
+                        required: true,
+                        default: '',
+                        description: 'The unique key provided to your application in TikTok Developer portal. (Client Key)',
+                },
                 {
                         displayName: 'Client Secret',
                         name: 'clientSecret',
@@ -79,30 +66,30 @@ export class TikTokOAuth2Api implements ICredentialType {
                         default: '',
                         description: 'The secret key associated with your application.',
                 },
-               {
-                       displayName: 'Scope',
-                       name: 'scope',
-                       type: 'string',
-                       default: 'video.upload,video.publish,user.info.basic,user.info.profile,user.info.stats',
-                       description:
-                               'Comma-separated OAuth scopes to request during authorization. Adjust based on the resources you plan to use.',
-               },
                 {
-                       displayName: 'Auth URI Query Parameters',
-                       name: 'authQueryParameters',
-                       type: 'hidden',
-      								 default: '={{"response_type=code&client_key="+encodeURIComponent($self["clientId"])}}',
-               },
-       ];
+                        displayName: 'Scope',
+                        name: 'scope',
+                        type: 'string',
+                        default: 'video.upload,video.publish,user.info.basic,user.info.profile,user.info.stats',
+                        description:
+                                'Comma-separated OAuth scopes to request during authorization. Adjust based on the resources you plan to use.',
+                },
+                {
+                        displayName: 'Auth URI Query Parameters',
+                        name: 'authQueryParameters',
+                        type: 'hidden',
+                        default: '={{"response_type=code&client_key="+encodeURIComponent($self["clientId"])}}',
+                },
+        ];
 
         // Function to handle custom token requests using TikTok specific parameter names
         async preAuthentication(this: IHttpRequestHelper, credentials: ICredentialDataDecryptedObject) {
                 const url = 'https://open.tiktokapis.com/v2/oauth/token/';
                 const oauthData = credentials.oauthTokenData as any;
-               const body: Record<string, string> = {
-  										 client_key: credentials.clientId as string,
-                       client_secret: credentials.clientSecret as string,
-               };
+                const body: Record<string, string> = {
+                        client_key: credentials.clientId as string,
+                        client_secret: credentials.clientSecret as string,
+                };
 
                 if (oauthData?.code) {
                         body.code = oauthData.code;
@@ -113,19 +100,19 @@ export class TikTokOAuth2Api implements ICredentialType {
                         body.grant_type = 'refresh_token';
                 }
 
-               const options: IHttpRequestOptions = {
-                       method: 'POST',
-                       url,
-                       headers: {
-                               'Content-Type': 'application/x-www-form-urlencoded',
-                       },
-                       body: new URLSearchParams(body).toString(),
-               };
+                const options: IHttpRequestOptions = {
+                        method: 'POST',
+                        url,
+                        headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: new URLSearchParams(body).toString(),
+                };
 
-               const { access_token, refresh_token } = (await this.helpers.httpRequest(options)) as {
-                       access_token: string;
-                       refresh_token: string;
-               };
+                const { access_token, refresh_token } = (await this.helpers.httpRequest(options)) as {
+                        access_token: string;
+                        refresh_token: string;
+                };
 
                 return {
                         accessToken: access_token,
@@ -133,17 +120,17 @@ export class TikTokOAuth2Api implements ICredentialType {
                 };
         }
 
-	// OAuth2 authenticate method using the obtained access token
-	authenticate: IAuthenticateGeneric = {
-		type: 'generic',
-		properties: {
-			headers: {
-				Authorization: '=Bearer {{$credentials.accessToken}}',
-			},
-		},
-	};
+        // OAuth2 authenticate method using the obtained access token
+        authenticate: IAuthenticateGeneric = {
+                type: 'generic',
+                properties: {
+                        headers: {
+                                Authorization: '=Bearer {{$credentials.accessToken}}',
+                        },
+                },
+        };
 
-	// Credential test request to validate connection
+        // Credential test request to validate connection
         test: ICredentialTestRequest = {
                 request: {
                         baseURL: 'https://open.tiktokapis.com',
