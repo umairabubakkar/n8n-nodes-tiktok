@@ -106,15 +106,36 @@ export class TikTokV2 implements INodeType {
 
 		for (let i = 0; i < length; i++) {
 			try {
-				if (resource === 'videoPost') {
-					if (operation === 'upload') {
-						const videoFile = this.getNodeParameter('videoFile', i) as IDataObject;
-						const body: IDataObject = {
-							videoFile, // Adjust to match the TikTok video file format
-						};
-						responseData = await tiktokApiRequest.call(this, 'POST', '/video/upload', body);
-					}
-				}
+                               if (resource === 'videoPost') {
+                                       if (operation === 'upload') {
+                                               const videoFile = this.getNodeParameter('videoFile', i) as IDataObject;
+                                               const body: IDataObject = {
+                                                       videoFile, // Adjust to match the TikTok video file format
+                                               };
+                                               responseData = await tiktokApiRequest.call(this, 'POST', '/video/upload', body);
+                                       } else if (operation === 'analytics') {
+                                               const videoId = this.getNodeParameter('videoId', i) as string;
+                                               const metrics = this.getNodeParameter('metrics', i) as string[];
+                                               if (!metrics?.length) {
+                                                       throw new NodeOperationError(
+                                                               this.getNode(),
+                                                               'Video Post: "Metrics" must include at least one selection.',
+                                                               { itemIndex: i },
+                                                       );
+                                               }
+                                               const qs: IDataObject = {
+                                                       post_id: videoId,
+                                                       metrics: metrics.join(','),
+                                               };
+                                               responseData = await tiktokApiRequest.call(
+                                                       this,
+                                                       'GET',
+                                                       '/post/analytics/',
+                                                       {},
+                                                       qs,
+                                               );
+                                       }
+                               }
 
                                 if (resource === 'photoPost') {
                                         if (operation === 'upload') {
@@ -154,6 +175,7 @@ export class TikTokV2 implements INodeType {
                                                         throw new NodeOperationError(
                                                                 this.getNode(),
                                                                 'User Profile: "Fields" must include at least one selection.',
+                                                                { itemIndex: i },
                                                         );
                                                 }
                                                 const qs: IDataObject = { fields: fields.join(',') };
