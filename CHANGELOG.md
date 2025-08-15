@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.4...v1.1.5) (2025-08-15)
+
+
+### Bug Fixes
+
+* **oauth2:** use properly the client_key value ([edb13bf](https://github.com/igabm/n8n-nodes-tiktok/commit/edb13bfdbf516f6c8d8a3170cef7a6df7531a67e))
+
 ## [1.1.4](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.3...v1.1.4) (2025-08-14)
 
 
