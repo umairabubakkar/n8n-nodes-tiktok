@@ -160,24 +160,45 @@ export class TikTokV2 implements INodeType {
                                                 responseData = await tiktokApiRequest.call(this, 'GET', '/user/info/', {}, qs);
                                         }
                                         if (operation === 'analytics') {
-                                                const metrics = this.getNodeParameter('metrics', i) as string[];
-                                                if (!metrics?.length) {
+                                                const selectedMetrics = this.getNodeParameter('metrics', i) as string[];
+                                                if (!selectedMetrics?.length) {
                                                         throw new NodeOperationError(
                                                                 this.getNode(),
                                                                 'User Profile: "Metrics" must include at least one selection.',
                                                         );
                                                 }
-                                                const qs: IDataObject = { metrics: metrics.join(',') };
+
+                                                const metricFieldMap: IDataObject = {
+                                                        followers: 'follower_count',
+                                                        likes: 'likes_count',
+                                                        views: 'video_count',
+                                                };
+                                                const fieldList = selectedMetrics
+                                                        .map((metric) => metricFieldMap[metric] as string)
+                                                        .filter(Boolean);
+                                                const qs: IDataObject = { fields: fieldList.join(',') };
+
                                                 responseData = await tiktokApiRequest.call(
                                                         this,
                                                         'GET',
-                                                        '/user/analytics/',
+                                                        '/user/info/',
                                                         {},
                                                         qs,
                                                 );
-                                                if ((responseData as IDataObject).metrics) {
-                                                        responseData = (responseData as IDataObject).metrics as IDataObject;
+
+                                                const user = (responseData as IDataObject).user as
+                                                        | IDataObject
+                                                        | undefined;
+                                                const metricsData: IDataObject = {};
+                                                if (user) {
+                                                        for (const metric of selectedMetrics) {
+                                                                const fieldName = metricFieldMap[metric] as string;
+                                                                if (user[fieldName] !== undefined) {
+                                                                        metricsData[metric] = user[fieldName];
+                                                                }
+                                                        }
                                                 }
+                                                responseData = metricsData;
                                         }
                                 }
 
