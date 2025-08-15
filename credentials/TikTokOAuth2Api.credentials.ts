@@ -26,6 +26,25 @@ export class TikTokOAuth2Api implements ICredentialType {
                        type: 'hidden',
                        default: 'https://www.tiktok.com/v2/auth/authorize/',
                },
+							 {
+												displayName: 'Authentication',
+												name: 'authentication',
+												type: 'options',
+												options: [
+													{
+														name: 'Body',
+														value: 'body',
+														description: 'Send credentials in body',
+													},
+													{
+														name: 'Header',
+														value: 'header',
+														description: 'Send credentials as Basic Auth header',
+													},
+												],
+                        type: 'hidden',
+												default: 'header',
+								},
                 {
                         displayName: 'Access Token URL',
                         name: 'accessTokenUrl',
@@ -47,7 +66,7 @@ export class TikTokOAuth2Api implements ICredentialType {
                        },
                        required: true,
                        default: '',
-                       description: 'The unique key provided to your application in TikTok Developer portal.',
+                       description: 'The unique key provided to your application in TikTok Developer portal. (Client Key)',
                },
                 {
                         displayName: 'Client Secret',
@@ -72,7 +91,7 @@ export class TikTokOAuth2Api implements ICredentialType {
                        displayName: 'Auth URI Query Parameters',
                        name: 'authQueryParameters',
                        type: 'hidden',
-                       default: 'client_key={{$credentials.clientId}}',
+      								 default: '={{"response_type=code&client_key="+encodeURIComponent($self["clientId"])}}',
                },
        ];
 
@@ -80,9 +99,8 @@ export class TikTokOAuth2Api implements ICredentialType {
         async preAuthentication(this: IHttpRequestHelper, credentials: ICredentialDataDecryptedObject) {
                 const url = 'https://open.tiktokapis.com/v2/oauth/token/';
                 const oauthData = credentials.oauthTokenData as any;
-               const clientKeyFromCreds = (credentials.clientKey ?? credentials.clientId) as string;
                const body: Record<string, string> = {
-                       client_key: clientKeyFromCreds,
+  										 client_key: credentials.clientId as string,
                        client_secret: credentials.clientSecret as string,
                };
 
