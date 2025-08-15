@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.5...v1.2.0) (2025-08-15)
+
+
+### Bug Fixes
+
+* retrieve user analytics via user info ([4a3d8e3](https://github.com/igabm/n8n-nodes-tiktok/commit/4a3d8e3293582d617f8dbeabff0b471462e26231))
+
+
+### Features
+
+* add user analytics operation ([24b3c2c](https://github.com/igabm/n8n-nodes-tiktok/commit/24b3c2cbbe5258712f642fc9d36ea643b28cb4df))
+
 ## [1.1.5](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.4...v1.1.5) (2025-08-15)
 
 
