@@ -159,6 +159,26 @@ export class TikTokV2 implements INodeType {
                                                 const qs: IDataObject = { fields: fields.join(',') };
                                                 responseData = await tiktokApiRequest.call(this, 'GET', '/user/info/', {}, qs);
                                         }
+                                        if (operation === 'analytics') {
+                                                const metrics = this.getNodeParameter('metrics', i) as string[];
+                                                if (!metrics?.length) {
+                                                        throw new NodeOperationError(
+                                                                this.getNode(),
+                                                                'User Profile: "Metrics" must include at least one selection.',
+                                                        );
+                                                }
+                                                const qs: IDataObject = { metrics: metrics.join(',') };
+                                                responseData = await tiktokApiRequest.call(
+                                                        this,
+                                                        'GET',
+                                                        '/user/analytics/',
+                                                        {},
+                                                        qs,
+                                                );
+                                                if ((responseData as IDataObject).metrics) {
+                                                        responseData = (responseData as IDataObject).metrics as IDataObject;
+                                                }
+                                        }
                                 }
 
 				const executionData = this.helpers.constructExecutionMetaData(
