@@ -72,7 +72,7 @@ export class TikTokOAuth2Api implements ICredentialType {
                        displayName: 'Auth URI Query Parameters',
                        name: 'authQueryParameters',
                        type: 'hidden',
-                       default: 'client_key={{CLIENT_ID}}',
+                       default: 'client_key={{$credentials.clientId}}',
                },
        ];
 
