@@ -106,15 +106,49 @@ export class TikTokV2 implements INodeType {
 
 		for (let i = 0; i < length; i++) {
 			try {
-				if (resource === 'videoPost') {
-					if (operation === 'upload') {
-						const videoFile = this.getNodeParameter('videoFile', i) as IDataObject;
-						const body: IDataObject = {
-							videoFile, // Adjust to match the TikTok video file format
-						};
-						responseData = await tiktokApiRequest.call(this, 'POST', '/video/upload', body);
-					}
-				}
+                                if (resource === 'videoPost') {
+                                        if (operation === 'upload') {
+                                                const videoFile = this.getNodeParameter('videoFile', i) as IDataObject;
+                                                const additionalFields =
+                                                        this.getNodeParameter('additionalFields', i) as IDataObject;
+                                                const postInfo: IDataObject = {};
+                                                if (additionalFields.title) {
+                                                        postInfo.title = additionalFields.title as string;
+                                                }
+                                                if (additionalFields.tags) {
+                                                        postInfo.tags = additionalFields.tags as string;
+                                                }
+                                                if (additionalFields.caption) {
+                                                        postInfo.caption = additionalFields.caption as string;
+                                                }
+                                                if (additionalFields.privacyLevel) {
+                                                        postInfo.privacy_level = additionalFields.privacyLevel as string;
+                                                }
+                                                if (additionalFields.scheduleTime !== undefined) {
+                                                        const scheduleTime = Number(additionalFields.scheduleTime);
+                                                        if (
+                                                                Number.isNaN(scheduleTime) ||
+                                                                !Number.isInteger(scheduleTime)
+                                                        ) {
+                                                                throw new NodeOperationError(
+                                                                        this.getNode(),
+                                                                        'Schedule Time must be a valid UNIX timestamp',
+                                                                );
+                                                        }
+                                                        postInfo.schedule_time = scheduleTime;
+                                                }
+                                                const body: IDataObject = {
+                                                        videoFile, // Adjust to match the TikTok video file format
+                                                        post_info: postInfo,
+                                                };
+                                                responseData = await tiktokApiRequest.call(
+                                                        this,
+                                                        'POST',
+                                                        '/video/upload',
+                                                        body,
+                                                );
+                                        }
+                                }
 
                                 if (resource === 'photoPost') {
                                         if (operation === 'upload') {
@@ -123,10 +157,26 @@ export class TikTokV2 implements INodeType {
                                                         this.getNodeParameter('additionalFields', i) as IDataObject;
                                                 const postInfo: IDataObject = {};
                                                 if (additionalFields.caption) {
-                                                        postInfo.title = additionalFields.caption as string;
+                                                        postInfo.caption = additionalFields.caption as string;
                                                 }
                                                 if (additionalFields.tags) {
-                                                        postInfo.description = additionalFields.tags as string;
+                                                        postInfo.tags = additionalFields.tags as string;
+                                                }
+                                                if (additionalFields.privacyLevel) {
+                                                        postInfo.privacy_level = additionalFields.privacyLevel as string;
+                                                }
+                                                if (additionalFields.scheduleTime !== undefined) {
+                                                        const scheduleTime = Number(additionalFields.scheduleTime);
+                                                        if (
+                                                                Number.isNaN(scheduleTime) ||
+                                                                !Number.isInteger(scheduleTime)
+                                                        ) {
+                                                                throw new NodeOperationError(
+                                                                        this.getNode(),
+                                                                        'Schedule Time must be a valid UNIX timestamp',
+                                                                );
+                                                        }
+                                                        postInfo.schedule_time = scheduleTime;
                                                 }
                                                 const body: IDataObject = {
                                                         post_info: postInfo,
