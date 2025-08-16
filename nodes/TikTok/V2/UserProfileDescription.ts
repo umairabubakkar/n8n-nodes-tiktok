@@ -19,6 +19,12 @@ export const userProfileOperations: INodeProperties[] = [
                                 description: 'Get profile information for the authenticated user',
                                 action: 'Get user information',
                         },
+                        {
+                                name: 'Analytics',
+                                value: 'analytics',
+                                description: 'Get analytics metrics for the authenticated user',
+                                action: 'Get analytics',
+                        },
                 ],
                 default: 'get',
         },
@@ -77,6 +83,37 @@ export const userProfileFields: INodeProperties[] = [
                         {
                                 name: 'Video Count',
                                 value: 'video_count',
+                        },
+                ],
+        },
+        /* -------------------------------------------------------------------------- */
+        /*                                userProfile:analytics                       */
+        /* -------------------------------------------------------------------------- */
+        {
+                displayName: 'Metrics',
+                name: 'metrics',
+                type: 'multiOptions',
+                default: [],
+                required: true,
+                displayOptions: {
+                        show: {
+                                resource: ['userProfile'],
+                                operation: ['analytics'],
+                        },
+                },
+                description: 'Select the analytics metrics to include in the response',
+                options: [
+                        {
+                                name: 'Followers',
+                                value: 'followers',
+                        },
+                        {
+                                name: 'Likes',
+                                value: 'likes',
+                        },
+                        {
+                                name: 'Views',
+                                value: 'views',
                         },
                 ],
         },

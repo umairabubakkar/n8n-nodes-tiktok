@@ -113,15 +113,36 @@ export class TikTokV2 implements INodeType {
 
 		for (let i = 0; i < length; i++) {
 			try {
-				if (resource === 'videoPost') {
-					if (operation === 'upload') {
-						const videoFile = this.getNodeParameter('videoFile', i) as IDataObject;
-						const body: IDataObject = {
-							videoFile, // Adjust to match the TikTok video file format
-						};
-						responseData = await tiktokApiRequest.call(this, 'POST', '/video/upload', body);
-					}
-				}
+                               if (resource === 'videoPost') {
+                                       if (operation === 'upload') {
+                                               const videoFile = this.getNodeParameter('videoFile', i) as IDataObject;
+                                               const body: IDataObject = {
+                                                       videoFile, // Adjust to match the TikTok video file format
+                                               };
+                                               responseData = await tiktokApiRequest.call(this, 'POST', '/video/upload', body);
+                                       } else if (operation === 'analytics') {
+                                               const videoId = this.getNodeParameter('videoId', i) as string;
+                                               const metrics = this.getNodeParameter('metrics', i) as string[];
+                                               if (!metrics?.length) {
+                                                       throw new NodeOperationError(
+                                                               this.getNode(),
+                                                               'Video Post: "Metrics" must include at least one selection.',
+                                                               { itemIndex: i },
+                                                       );
+                                               }
+                                               const qs: IDataObject = {
+                                                       post_id: videoId,
+                                                       metrics: metrics.join(','),
+                                               };
+                                               responseData = await tiktokApiRequest.call(
+                                                       this,
+                                                       'GET',
+                                                       '/post/analytics/',
+                                                       {},
+                                                       qs,
+                                               );
+                                       }
+                               }
 
 				if (resource === 'photoPost') {
 					if (operation === 'upload') {
@@ -167,6 +188,7 @@ export class TikTokV2 implements INodeType {
 					}
 				}
 
+        
 				if (resource === 'search') {
 					const query = this.getNodeParameter('query', i) as string;
 					const cursor = this.getNodeParameter('cursor', i, 0) as number;
@@ -181,6 +203,62 @@ export class TikTokV2 implements INodeType {
 						responseData = responseData.sounds ?? responseData.results ?? responseData;
 					}
 				}
+        
+                                if (resource === 'userProfile') {
+                                        if (operation === 'get') {
+                                                const fields = this.getNodeParameter('fields', i) as string[];
+                                                if (!fields?.length) {
+                                                        throw new NodeOperationError(
+                                                                this.getNode(),
+                                                                'User Profile: "Fields" must include at least one selection.',
+                                                                { itemIndex: i },
+                                                        );
+                                                }
+                                                const qs: IDataObject = { fields: fields.join(',') };
+                                                responseData = await tiktokApiRequest.call(this, 'GET', '/user/info/', {}, qs);
+                                        }
+                                        if (operation === 'analytics') {
+                                                const selectedMetrics = this.getNodeParameter('metrics', i) as string[];
+                                                if (!selectedMetrics?.length) {
+                                                        throw new NodeOperationError(
+                                                                this.getNode(),
+                                                                'User Profile: "Metrics" must include at least one selection.',
+                                                        );
+                                                }
+
+                                                const metricFieldMap: IDataObject = {
+                                                        followers: 'follower_count',
+                                                        likes: 'likes_count',
+                                                        views: 'video_count',
+                                                };
+                                                const fieldList = selectedMetrics
+                                                        .map((metric) => metricFieldMap[metric] as string)
+                                                        .filter(Boolean);
+                                                const qs: IDataObject = { fields: fieldList.join(',') };
+
+                                                responseData = await tiktokApiRequest.call(
+                                                        this,
+                                                        'GET',
+                                                        '/user/info/',
+                                                        {},
+                                                        qs,
+                                                );
+
+                                                const user = (responseData as IDataObject).user as
+                                                        | IDataObject
+                                                        | undefined;
+                                                const metricsData: IDataObject = {};
+                                                if (user) {
+                                                        for (const metric of selectedMetrics) {
+                                                                const fieldName = metricFieldMap[metric] as string;
+                                                                if (user[fieldName] !== undefined) {
+                                                                        metricsData[metric] = user[fieldName];
+                                                                }
+                                                        }
+                                                }
+                                                responseData = metricsData;
+                                        }
+                                }
 
 				const executionData = this.helpers.constructExecutionMetaData(
 					this.helpers.returnJsonArray(responseData as IDataObject[]),

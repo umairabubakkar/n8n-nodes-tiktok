@@ -1,3 +1,65 @@
+# [1.3.0](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.2.1...v1.3.0) (2025-08-16)
+
+
+### Bug Fixes
+
+* **auth:** access token properly handled ([2a64d3f](https://github.com/igabm/n8n-nodes-tiktok/commit/2a64d3f6b0f93e823c0749185ffb95b66a847a84))
+* **code:** refactor ([892ff4a](https://github.com/igabm/n8n-nodes-tiktok/commit/892ff4a978139eeb9f7d04e710fd03441c394ed8))
+* **code:** refactor ([60878ae](https://github.com/igabm/n8n-nodes-tiktok/commit/60878aee1e8fc4819d7b9484a6c117bbcf640d76))
+
+
+### Features
+
+* add video analytics operation ([e9a065a](https://github.com/igabm/n8n-nodes-tiktok/commit/e9a065ab019c324bd46ee1057fe300d1e9d7594b))
+* **DX:** add user information if login successful ([42953a4](https://github.com/igabm/n8n-nodes-tiktok/commit/42953a4b48ec96be069fd9fc021a5540a7f18057))
+
+# [1.3.0](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.2.2...v1.3.0) (2025-08-16)
+
+
+### Bug Fixes
+
+* **code:** refactor ([f77b027](https://github.com/igabm/n8n-nodes-tiktok/commit/f77b0276369a7c630eb329e5966296233758bda3))
+* **code:** refactor ([c0e708d](https://github.com/igabm/n8n-nodes-tiktok/commit/c0e708d9e0a79bb26067d5aa43654090d5e58c4c))
+
+
+### Features
+
+* **DX:** add user information if login successful ([bec48e5](https://github.com/igabm/n8n-nodes-tiktok/commit/bec48e5ae2b87131b381ebdcee5ba87d691e811d))
+* **DX:** add user information if login successful ([632b4a6](https://github.com/igabm/n8n-nodes-tiktok/commit/632b4a693731bf3b224a5269ee4235c618d7543a))
+
+## [1.2.2](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.2.1...v1.2.2) (2025-08-15)
+
+
+### Bug Fixes
+
+* **auth:** access token properly handled ([2a64d3f](https://github.com/igabm/n8n-nodes-tiktok/commit/2a64d3f6b0f93e823c0749185ffb95b66a847a84))
+
+## [1.2.1](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.2.0...v1.2.1) (2025-08-15)
+
+
+### Bug Fixes
+
+* **typo:** indent+properties doublon ([df76b28](https://github.com/igabm/n8n-nodes-tiktok/commit/df76b2881737b87eb8a0736ad17841eb310b52bb))
+
+# [1.2.0](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.5...v1.2.0) (2025-08-15)
+
+
+### Bug Fixes
+
+* retrieve user analytics via user info ([4a3d8e3](https://github.com/igabm/n8n-nodes-tiktok/commit/4a3d8e3293582d617f8dbeabff0b471462e26231))
+
+
+### Features
+
+* add user analytics operation ([24b3c2c](https://github.com/igabm/n8n-nodes-tiktok/commit/24b3c2cbbe5258712f642fc9d36ea643b28cb4df))
+
+## [1.1.5](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.4...v1.1.5) (2025-08-15)
+
+
+### Bug Fixes
+
+* **oauth2:** use properly the client_key value ([edb13bf](https://github.com/igabm/n8n-nodes-tiktok/commit/edb13bfdbf516f6c8d8a3170cef7a6df7531a67e))
+
 ## [1.1.4](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.1.3...v1.1.4) (2025-08-14)
 
 
