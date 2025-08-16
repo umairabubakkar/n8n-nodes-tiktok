@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.2.2...v1.3.0) (2025-08-16)
+
+
+### Bug Fixes
+
+* **code:** refactor ([f77b027](https://github.com/igabm/n8n-nodes-tiktok/commit/f77b0276369a7c630eb329e5966296233758bda3))
+* **code:** refactor ([c0e708d](https://github.com/igabm/n8n-nodes-tiktok/commit/c0e708d9e0a79bb26067d5aa43654090d5e58c4c))
+
+
+### Features
+
+* **DX:** add user information if login successful ([bec48e5](https://github.com/igabm/n8n-nodes-tiktok/commit/bec48e5ae2b87131b381ebdcee5ba87d691e811d))
+* **DX:** add user information if login successful ([632b4a6](https://github.com/igabm/n8n-nodes-tiktok/commit/632b4a693731bf3b224a5269ee4235c618d7543a))
+
 ## [1.2.2](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.2.1...v1.2.2) (2025-08-15)
 
 
