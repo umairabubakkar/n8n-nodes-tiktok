@@ -3,6 +3,24 @@
 
 ### Bug Fixes
 
+* **api:** /v2 api ([6228260](https://github.com/igabm/n8n-nodes-tiktok/commit/622826025ad195a0239c1be993bb069923aadfed))
+* **auth:** access token properly handled ([2a64d3f](https://github.com/igabm/n8n-nodes-tiktok/commit/2a64d3f6b0f93e823c0749185ffb95b66a847a84))
+* **code:** refactor ([892ff4a](https://github.com/igabm/n8n-nodes-tiktok/commit/892ff4a978139eeb9f7d04e710fd03441c394ed8))
+* **code:** refactor ([60878ae](https://github.com/igabm/n8n-nodes-tiktok/commit/60878aee1e8fc4819d7b9484a6c117bbcf640d76))
+* indent ([830532b](https://github.com/igabm/n8n-nodes-tiktok/commit/830532b7245af3987e135f2e01eb7c614bcf31f8))
+
+
+### Features
+
+* add TikTok search operations ([badfb0c](https://github.com/igabm/n8n-nodes-tiktok/commit/badfb0cf22be550e38403ea762f8b6f06454bbcd))
+* add video analytics operation ([e9a065a](https://github.com/igabm/n8n-nodes-tiktok/commit/e9a065ab019c324bd46ee1057fe300d1e9d7594b))
+* **DX:** add user information if login successful ([42953a4](https://github.com/igabm/n8n-nodes-tiktok/commit/42953a4b48ec96be069fd9fc021a5540a7f18057))
+
+# [1.3.0](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.2.1...v1.3.0) (2025-08-16)
+
+
+### Bug Fixes
+
 * **auth:** access token properly handled ([2a64d3f](https://github.com/igabm/n8n-nodes-tiktok/commit/2a64d3f6b0f93e823c0749185ffb95b66a847a84))
 * **code:** refactor ([892ff4a](https://github.com/igabm/n8n-nodes-tiktok/commit/892ff4a978139eeb9f7d04e710fd03441c394ed8))
 * **code:** refactor ([60878ae](https://github.com/igabm/n8n-nodes-tiktok/commit/60878aee1e8fc4819d7b9484a6c117bbcf640d76))
