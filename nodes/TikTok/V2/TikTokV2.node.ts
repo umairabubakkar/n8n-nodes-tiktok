@@ -168,7 +168,7 @@ export class TikTokV2 implements INodeType {
 						responseData = await tiktokApiRequest.call(
 							this,
 							'POST',
-							'/v2/post/publish/content/init/',
+							'/post/publish/content/init/',
 							body,
 						);
 					}
@@ -189,17 +189,17 @@ export class TikTokV2 implements INodeType {
 				}
 
         
-				if (resource === 'search') {
-					const query = this.getNodeParameter('query', i) as string;
-					const cursor = this.getNodeParameter('cursor', i, 0) as number;
-					const limit = this.getNodeParameter('limit', i, 20) as number;
-					const qs: IDataObject = { query, cursor, limit };
-					if (operation === 'hashtag') {
-						responseData = await tiktokApiRequest.call(this, 'GET', '/v2/search/hashtag/', {}, qs);
+                if (resource === 'search') {  
+                    const query = this.getNodeParameter('query', i) as string;  
+                    const cursor = this.getNodeParameter('cursor', i, 0) as number;  
+                    const limit = this.getNodeParameter('limit', i, 20) as number;  
+                    const qs: IDataObject = { keyword: query, cursor, max_count: limit };  
+                    if (operation === 'hashtag') {  
+						responseData = await tiktokApiRequest.call(this, 'GET', '/search/hashtag/', {}, qs);
 						responseData = responseData.hashtags ?? responseData.results ?? responseData;
 					}
 					if (operation === 'sound') {
-						responseData = await tiktokApiRequest.call(this, 'GET', '/v2/search/sound/', {}, qs);
+						responseData = await tiktokApiRequest.call(this, 'GET', '/search/sound/', {}, qs);
 						responseData = responseData.sounds ?? responseData.results ?? responseData;
 					}
 				}
