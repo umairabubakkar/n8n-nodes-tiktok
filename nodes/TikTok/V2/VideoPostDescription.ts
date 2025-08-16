@@ -18,15 +18,21 @@ export const videoPostOperations: INodeProperties[] = [
 				description: 'Upload a video to TikTok',
 				action: 'Upload video',
 			},
-			{
-				name: 'Delete',
-				value: 'delete',
-				description: 'Delete a video from TikTok',
-				action: 'Delete video',
-			},
-		],
-		default: 'upload',
-	},
+                       {
+                               name: 'Delete',
+                               value: 'delete',
+                               description: 'Delete a video from TikTok',
+                               action: 'Delete video',
+                       },
+                       {
+                               name: 'Analytics',
+                               value: 'analytics',
+                               description: 'Retrieve analytics for a TikTok video',
+                               action: 'Get video analytics',
+                       },
+               ],
+               default: 'upload',
+       },
 ];
 
 export const videoPostFields: INodeProperties[] = [
@@ -102,9 +108,9 @@ export const videoPostFields: INodeProperties[] = [
                         },
                 ],
         },
-	/* -------------------------------------------------------------------------- */
-	/*                                videoPost:delete                            */
-	/* -------------------------------------------------------------------------- */
+        /* -------------------------------------------------------------------------- */
+        /*                                videoPost:delete                            */
+        /* -------------------------------------------------------------------------- */
 	{
 		displayName: 'Video ID',
 		name: 'videoId',
@@ -117,6 +123,55 @@ export const videoPostFields: INodeProperties[] = [
 				operation: ['delete'],
 			},
 		},
-		description: 'The ID of the video to delete',
-	},
+               description: 'The ID of the video to delete',
+       },
+       /* -------------------------------------------------------------------------- */
+       /*                              videoPost:analytics                           */
+       /* -------------------------------------------------------------------------- */
+       {
+               displayName: 'Video ID',
+               name: 'videoId',
+               type: 'string',
+               default: '',
+               required: true,
+               displayOptions: {
+                       show: {
+                               resource: ['videoPost'],
+                               operation: ['analytics'],
+                       },
+               },
+               description: 'The ID of the video to retrieve analytics for',
+       },
+       {
+               displayName: 'Metrics',
+               name: 'metrics',
+               type: 'multiOptions',
+               default: [],
+               required: true,
+               displayOptions: {
+                       show: {
+                               resource: ['videoPost'],
+                               operation: ['analytics'],
+                       },
+               },
+               options: [
+                       {
+                               name: 'Views',
+                               value: 'views',
+                       },
+                       {
+                               name: 'Likes',
+                               value: 'likes',
+                       },
+                       {
+                               name: 'Comments',
+                               value: 'comments',
+                       },
+                       {
+                               name: 'Shares',
+                               value: 'shares',
+                       },
+               ],
+               description: 'Select the metrics to retrieve',
+       },
 ];
