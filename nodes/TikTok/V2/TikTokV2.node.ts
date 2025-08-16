@@ -174,19 +174,6 @@ export class TikTokV2 implements INodeType {
 					}
 				}
 
-				if (resource === 'userProfile') {
-					if (operation === 'get') {
-						const fields = this.getNodeParameter('fields', i) as string[];
-						if (!fields?.length) {
-							throw new NodeOperationError(
-								this.getNode(),
-								'User Profile: "Fields" must include at least one selection.',
-							);
-						}
-						const qs: IDataObject = { fields: fields.join(',') };
-						responseData = await tiktokApiRequest.call(this, 'GET', '/user/info/', {}, qs);
-					}
-				}
 
         
                 if (resource === 'search') {  
