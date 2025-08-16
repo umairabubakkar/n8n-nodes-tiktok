@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.3.3...v1.4.0) (2025-08-16)
+
+
+### Features
+
+* add post status fetch ([5cafbd7](https://github.com/igabm/n8n-nodes-tiktok/commit/5cafbd7f50591adab7c0bc8f9793fac06f6a1580))
+
 ## [1.3.3](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.3.2...v1.3.3) (2025-08-16)
 
 
