@@ -20,10 +20,11 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Operations
 
-The TikTok node supports the following operations:
-- **Video Post**: Upload or delete a video to/from TikTok.
-- **Photo Post**: Upload a photo from a verified URL to TikTok.
-- **User Profile**: Retrieve profile information and statistics for the authenticated user.
+ The TikTok node supports the following operations:
+ - **Video Post**: Upload a video via URL or file.
+ - **Photo Post**: Upload one or more photos from verified URLs to TikTok, either as a direct post or for later editing in the TikTok app.
+ - **Post Status**: Check the publishing status of a post using its publish ID.
+ - **User Profile**: Retrieve profile information and statistics for the authenticated user.
 
 ## Credentials
 
