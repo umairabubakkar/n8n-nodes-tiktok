@@ -65,49 +65,23 @@ export const videoPostFields: INodeProperties[] = [
 				operation: ['upload'],
 			},
 		},
-                options: [
-                        {
-                                displayName: 'Caption',
-                                name: 'caption',
-                                type: 'string',
-                                default: '',
-                                description: 'The caption for the video post',
-                        },
-                        {
-                                displayName: 'Privacy Level',
-                                name: 'privacyLevel',
-                                type: 'options',
-                                options: [
-                                        { name: 'Public', value: 'PUBLIC' },
-                                        { name: 'Friends', value: 'FRIENDS' },
-                                        { name: 'Private', value: 'PRIVATE' },
-                                ],
-                                default: 'PUBLIC',
-                                description: 'Who can view this post',
-                        },
-                        {
-                                displayName: 'Schedule Time',
-                                name: 'scheduleTime',
-                                type: 'number',
-                                default: 0,
-                                description: 'UNIX timestamp for scheduled publication',
-                        },
-                        {
-                                displayName: 'Tags',
-                                name: 'tags',
-                                type: 'string',
-                                default: '',
-                                description: 'Comma-separated list of tags for the video post',
-                        },
-                        {
-                                displayName: 'Title',
-                                name: 'title',
-                                type: 'string',
-                                default: '',
-                                description: 'The title for the video post',
-                        },
-                ],
-        },
+		options: [
+			{
+				displayName: 'Title',
+				name: 'title',
+				type: 'string',
+				default: '',
+				description: 'The title for the video post',
+			},
+			{
+				displayName: 'Tags',
+				name: 'tags',
+				type: 'string',
+				default: '',
+				description: 'Comma-separated list of tags for the video post',
+			},
+		],
+	},
         /* -------------------------------------------------------------------------- */
         /*                                videoPost:delete                            */
         /* -------------------------------------------------------------------------- */
