@@ -54,6 +54,17 @@ For new users, check out the [Try it out](https://docs.n8n.io/try-it-out/) guide
 To link to a local n8n instance: (if dev workspace is ~/work/ )
 pnpm link ~/work/n8n-nodes-tiktok/
 
+docker run -it --rm \
+  --name n8n \
+  -p 5678:5678 \
+  -v n8n_data:/home/node/.n8n \
+  -v ~/work/n8n-nodes-tiktok:/home/node/.n8n/nodes/node_modules/@igabm/n8n-nodes-tiktok \
+  -e "NODE_FUNCTION_ALLOW_EXTERNAL=*" \
+  -e "N8N_SECURE_COOKIE=false" \
+  -e N8N_LOG_LEVEL=debug \
+  docker.n8n.io/n8nio/n8n
+
+
 To publish a new release:
 pnpm publish  --access public
 
@@ -64,5 +75,4 @@ pnpm publish  --access public
 
 ## Version history
 
-- **1.0.0**: Initial release with support for uploading and deleting TikTok videos and uploading photos.
-- **1.1.0**: Added Display API support to retrieve user profile information.
+See [CHANGELOG.md](CHANGELOG.md)
