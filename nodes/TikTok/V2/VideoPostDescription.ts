@@ -18,21 +18,21 @@ export const videoPostOperations: INodeProperties[] = [
 				description: 'Upload a video to TikTok',
 				action: 'Upload video',
 			},
-                       {
-                               name: 'Delete',
-                               value: 'delete',
-                               description: 'Delete a video from TikTok',
-                               action: 'Delete video',
-                       },
-                       {
-                               name: 'Analytics',
-                               value: 'analytics',
-                               description: 'Retrieve analytics for a TikTok video',
-                               action: 'Get video analytics',
-                       },
-               ],
-               default: 'upload',
-       },
+			{
+				name: 'Delete',
+				value: 'delete',
+				description: 'Delete a video from TikTok',
+				action: 'Delete video',
+			},
+			{
+				name: 'Analytics',
+				value: 'analytics',
+				description: 'Retrieve analytics for a TikTok video',
+				action: 'Get video analytics',
+			},
+		],
+		default: 'upload',
+	},
 ];
 
 export const videoPostFields: INodeProperties[] = [
@@ -40,8 +40,8 @@ export const videoPostFields: INodeProperties[] = [
 	/*                                videoPost:upload                            */
 	/* -------------------------------------------------------------------------- */
 	{
-		displayName: 'Video File',
-		name: 'videoFile',
+		displayName: 'Video URL',
+		name: 'videoUrl',
 		type: 'string',
 		default: '',
 		required: true,
@@ -51,7 +51,7 @@ export const videoPostFields: INodeProperties[] = [
 				operation: ['upload'],
 			},
 		},
-		description: 'The path to the video file to upload',
+		description: 'The URL of the video to upload',
 	},
 	{
 		displayName: 'Additional Fields',
@@ -65,52 +65,52 @@ export const videoPostFields: INodeProperties[] = [
 				operation: ['upload'],
 			},
 		},
-                options: [
-                        {
-                                displayName: 'Caption',
-                                name: 'caption',
-                                type: 'string',
-                                default: '',
-                                description: 'The caption for the video post',
-                        },
-                        {
-                                displayName: 'Privacy Level',
-                                name: 'privacyLevel',
-                                type: 'options',
-                                options: [
-                                        { name: 'Public', value: 'PUBLIC' },
-                                        { name: 'Friends', value: 'FRIENDS' },
-                                        { name: 'Private', value: 'PRIVATE' },
-                                ],
-                                default: 'PUBLIC',
-                                description: 'Who can view this post',
-                        },
-                        {
-                                displayName: 'Schedule Time',
-                                name: 'scheduleTime',
-                                type: 'number',
-                                default: 0,
-                                description: 'UNIX timestamp for scheduled publication',
-                        },
-                        {
-                                displayName: 'Tags',
-                                name: 'tags',
-                                type: 'string',
-                                default: '',
-                                description: 'Comma-separated list of tags for the video post',
-                        },
-                        {
-                                displayName: 'Title',
-                                name: 'title',
-                                type: 'string',
-                                default: '',
-                                description: 'The title for the video post',
-                        },
-                ],
-        },
-        /* -------------------------------------------------------------------------- */
-        /*                                videoPost:delete                            */
-        /* -------------------------------------------------------------------------- */
+		options: [
+			{
+				displayName: 'Caption',
+				name: 'caption',
+				type: 'string',
+				default: '',
+				description: 'The caption for the video post',
+			},
+			{
+				displayName: 'Privacy Level',
+				name: 'privacyLevel',
+				type: 'options',
+				options: [
+					{ name: 'Public', value: 'PUBLIC' },
+					{ name: 'Friends', value: 'FRIENDS' },
+					{ name: 'Private', value: 'PRIVATE' },
+				],
+				default: 'PUBLIC',
+				description: 'Who can view this post',
+			},
+			{
+				displayName: 'Schedule Time',
+				name: 'scheduleTime',
+				type: 'number',
+				default: 0,
+				description: 'UNIX timestamp for scheduled publication',
+			},
+			{
+				displayName: 'Tags',
+				name: 'tags',
+				type: 'string',
+				default: '',
+				description: 'Comma-separated list of tags for the video post',
+			},
+			{
+				displayName: 'Title',
+				name: 'title',
+				type: 'string',
+				default: '',
+				description: 'The title for the video post',
+			},
+		],
+	},
+	/* -------------------------------------------------------------------------- */
+	/*                                videoPost:delete                            */
+	/* -------------------------------------------------------------------------- */
 	{
 		displayName: 'Video ID',
 		name: 'videoId',
@@ -123,55 +123,55 @@ export const videoPostFields: INodeProperties[] = [
 				operation: ['delete'],
 			},
 		},
-               description: 'The ID of the video to delete',
-       },
-       /* -------------------------------------------------------------------------- */
-       /*                              videoPost:analytics                           */
-       /* -------------------------------------------------------------------------- */
-       {
-               displayName: 'Video ID',
-               name: 'videoId',
-               type: 'string',
-               default: '',
-               required: true,
-               displayOptions: {
-                       show: {
-                               resource: ['videoPost'],
-                               operation: ['analytics'],
-                       },
-               },
-               description: 'The ID of the video to retrieve analytics for',
-       },
-       {
-               displayName: 'Metrics',
-               name: 'metrics',
-               type: 'multiOptions',
-               default: [],
-               required: true,
-               displayOptions: {
-                       show: {
-                               resource: ['videoPost'],
-                               operation: ['analytics'],
-                       },
-               },
-               options: [
-                       {
-                               name: 'Views',
-                               value: 'views',
-                       },
-                       {
-                               name: 'Likes',
-                               value: 'likes',
-                       },
-                       {
-                               name: 'Comments',
-                               value: 'comments',
-                       },
-                       {
-                               name: 'Shares',
-                               value: 'shares',
-                       },
-               ],
-               description: 'Select the metrics to retrieve',
-       },
+		description: 'The ID of the video to delete',
+	},
+	/* -------------------------------------------------------------------------- */
+	/*                              videoPost:analytics                           */
+	/* -------------------------------------------------------------------------- */
+	{
+		displayName: 'Video ID',
+		name: 'videoId',
+		type: 'string',
+		default: '',
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['videoPost'],
+				operation: ['analytics'],
+			},
+		},
+		description: 'The ID of the video to retrieve analytics for',
+	},
+	{
+		displayName: 'Metrics',
+		name: 'metrics',
+		type: 'multiOptions',
+		default: [],
+		required: true,
+		displayOptions: {
+			show: {
+				resource: ['videoPost'],
+				operation: ['analytics'],
+			},
+		},
+		options: [
+			{
+				name: 'Views',
+				value: 'views',
+			},
+			{
+				name: 'Likes',
+				value: 'likes',
+			},
+			{
+				name: 'Comments',
+				value: 'comments',
+			},
+			{
+				name: 'Shares',
+				value: 'shares',
+			},
+		],
+		description: 'Select the metrics to retrieve',
+	},
 ];

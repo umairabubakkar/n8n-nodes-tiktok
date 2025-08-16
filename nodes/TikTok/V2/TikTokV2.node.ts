@@ -115,7 +115,7 @@ export class TikTokV2 implements INodeType {
 			try {
 				if (resource === 'videoPost') {
 					if (operation === 'upload') {
-						const videoFile = this.getNodeParameter('videoFile', i) as IDataObject;
+						const videoUrl = this.getNodeParameter('videoUrl', i) as string;
 						const additionalFields = this.getNodeParameter('additionalFields', i) as IDataObject;
 						const postInfo: IDataObject = {};
 						if (additionalFields.title) {
@@ -144,10 +144,18 @@ export class TikTokV2 implements INodeType {
 							}
 						}
 						const body: IDataObject = {
-							videoFile, // Adjust to match the TikTok video file format
 							post_info: postInfo,
+							source_info: {
+								source: 'PULL_FROM_URL',
+								video_url: videoUrl,
+							},
 						};
-						responseData = await tiktokApiRequest.call(this, 'POST', '/video/upload', body);
+						responseData = await tiktokApiRequest.call(
+							this,
+							'POST',
+							'/post/publish/video/init/',
+							body,
+						);
 					} else if (operation === 'analytics') {
 						const videoId = this.getNodeParameter('videoId', i) as string;
 						const metrics = this.getNodeParameter('metrics', i) as string[];
@@ -197,7 +205,7 @@ export class TikTokV2 implements INodeType {
 							post_info: postInfo,
 							source_info: {
 								source: 'PULL_FROM_URL',
-								photo_cover_index: 1,
+								photo_cover_index: 0,
 								photo_images: [photoUrl],
 							},
 							post_mode: 'MEDIA_UPLOAD',
