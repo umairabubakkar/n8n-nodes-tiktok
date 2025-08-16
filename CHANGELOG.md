@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.3.1...v1.3.2) (2025-08-16)
+
+
+### Bug Fixes
+
+* **code:** typo error ([31618ae](https://github.com/igabm/n8n-nodes-tiktok/commit/31618ae251a21a5a9f6c4be54742868fee2bb2c3))
+
 ## [1.3.1](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.3.0...v1.3.1) (2025-08-16)
 
 
