@@ -1,3 +1,9 @@
+## [1.3.3](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.3.2...v1.3.3) (2025-08-16)
+
+### Chore
+
+* require n8n >=1.107.0 for OAuth2 client credentials body properties support ([22ca768](https://github.com/n8n-io/n8n/commit/22ca768))
+
 ## [1.3.2](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.3.1...v1.3.2) (2025-08-16)
 
 

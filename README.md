@@ -39,7 +39,7 @@ For detailed instructions on obtaining the credentials, refer to the [TikTok API
 
 ## Compatibility
 
-- Minimum n8n version: 0.154.0
+- Minimum n8n version: 1.107.0
 - Tested against TikTok API versions from 2023.
 
 No known incompatibility issues at this time.
