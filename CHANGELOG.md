@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.3.0...v1.3.1) (2025-08-16)
+
+
+### Bug Fixes
+
+* **docs:** add debug details + changelog ref ([3cae09d](https://github.com/igabm/n8n-nodes-tiktok/commit/3cae09db2126088e553d9eba411795127bcf7270))
+
 # [1.3.0](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.2.1...v1.3.0) (2025-08-16)
 
 
