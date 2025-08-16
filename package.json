@@ -36,6 +36,7 @@
   ],
   "n8n": {
     "n8nNodesApiVersion": 1,
+    "minimumCoreVersion": "1.107.0",
     "credentials": [
       "dist/credentials/TikTokOAuth2Api.credentials.js"
     ],
