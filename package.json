@@ -1,6 +1,6 @@
 {
   "name": "@igabm/n8n-nodes-tiktok",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "n8n nodes for implementation for TikTok API",
   "keywords": [
     "n8n-community-node-package"
