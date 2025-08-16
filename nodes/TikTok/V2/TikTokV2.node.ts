@@ -135,7 +135,10 @@ export class TikTokV2 implements INodeType {
                                                                         'Schedule Time must be a valid UNIX timestamp',
                                                                 );
                                                         }
-                                                        postInfo.schedule_time = scheduleTime;
+                                                        // Treat 0 as "not set" to avoid scheduling at the Unix epoch
+                                                        if (scheduleTime > 0) {
+                                                                postInfo.schedule_time = scheduleTime;
+                                                        }
                                                 }
                                                 const body: IDataObject = {
                                                         videoFile, // Adjust to match the TikTok video file format
@@ -176,7 +179,10 @@ export class TikTokV2 implements INodeType {
                                                                         'Schedule Time must be a valid UNIX timestamp',
                                                                 );
                                                         }
-                                                        postInfo.schedule_time = scheduleTime;
+                                                        // Treat 0 as "not set"
+                                                        if (scheduleTime > 0) {
+                                                                postInfo.schedule_time = scheduleTime;
+                                                        }
                                                 }
                                                 const body: IDataObject = {
                                                         post_info: postInfo,
