@@ -1,177 +1,173 @@
 import type { INodeProperties } from 'n8n-workflow';
 
 export const videoPostOperations: INodeProperties[] = [
-	{
-		displayName: 'Operation',
-		name: 'operation',
-		type: 'options',
-		noDataExpression: true,
-		displayOptions: {
-			show: {
-				resource: ['videoPost'],
-			},
-		},
-		options: [
-			{
-				name: 'Upload',
-				value: 'upload',
-				description: 'Upload a video to TikTok',
-				action: 'Upload video',
-			},
-			{
-				name: 'Delete',
-				value: 'delete',
-				description: 'Delete a video from TikTok',
-				action: 'Delete video',
-			},
-			{
-				name: 'Analytics',
-				value: 'analytics',
-				description: 'Retrieve analytics for a TikTok video',
-				action: 'Get video analytics',
-			},
-		],
-		default: 'upload',
-	},
+        {
+                displayName: 'Operation',
+                name: 'operation',
+                type: 'options',
+                noDataExpression: true,
+                displayOptions: {
+                        show: {
+                                resource: ['videoPost'],
+                        },
+                },
+                options: [
+                        {
+                                name: 'Upload',
+                                value: 'upload',
+                                description: 'Upload a video to TikTok',
+                                action: 'Upload video',
+                        },
+                ],
+                default: 'upload',
+        },
 ];
 
 export const videoPostFields: INodeProperties[] = [
-	/* -------------------------------------------------------------------------- */
-	/*                                videoPost:upload                            */
-	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Video URL',
-		name: 'videoUrl',
-		type: 'string',
-		default: '',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['videoPost'],
-				operation: ['upload'],
-			},
-		},
-		description: 'The URL of the video to upload',
-	},
-	{
-		displayName: 'Additional Fields',
-		name: 'additionalFields',
-		type: 'collection',
-		placeholder: 'Add Field',
-		default: {},
-		displayOptions: {
-			show: {
-				resource: ['videoPost'],
-				operation: ['upload'],
-			},
-		},
-		options: [
-			{
-				displayName: 'Caption',
-				name: 'caption',
-				type: 'string',
-				default: '',
-				description: 'The caption for the video post',
-			},
-			{
-				displayName: 'Privacy Level',
-				name: 'privacyLevel',
-				type: 'options',
-				options: [
-					{ name: 'Public', value: 'PUBLIC' },
-					{ name: 'Friends', value: 'FRIENDS' },
-					{ name: 'Private', value: 'PRIVATE' },
-				],
-				default: 'PUBLIC',
-				description: 'Who can view this post',
-			},
-			{
-				displayName: 'Schedule Time',
-				name: 'scheduleTime',
-				type: 'number',
-				default: 0,
-				description: 'UNIX timestamp for scheduled publication',
-			},
-			{
-				displayName: 'Tags',
-				name: 'tags',
-				type: 'string',
-				default: '',
-				description: 'Comma-separated list of tags for the video post',
-			},
-			{
-				displayName: 'Title',
-				name: 'title',
-				type: 'string',
-				default: '',
-				description: 'The title for the video post',
-			},
-		],
-	},
-	/* -------------------------------------------------------------------------- */
-	/*                                videoPost:delete                            */
-	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Video ID',
-		name: 'videoId',
-		type: 'string',
-		default: '',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['videoPost'],
-				operation: ['delete'],
-			},
-		},
-		description: 'The ID of the video to delete',
-	},
-	/* -------------------------------------------------------------------------- */
-	/*                              videoPost:analytics                           */
-	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Video ID',
-		name: 'videoId',
-		type: 'string',
-		default: '',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['videoPost'],
-				operation: ['analytics'],
-			},
-		},
-		description: 'The ID of the video to retrieve analytics for',
-	},
-	{
-		displayName: 'Metrics',
-		name: 'metrics',
-		type: 'multiOptions',
-		default: [],
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['videoPost'],
-				operation: ['analytics'],
-			},
-		},
-		options: [
-			{
-				name: 'Views',
-				value: 'views',
-			},
-			{
-				name: 'Likes',
-				value: 'likes',
-			},
-			{
-				name: 'Comments',
-				value: 'comments',
-			},
-			{
-				name: 'Shares',
-				value: 'shares',
-			},
-		],
-		description: 'Select the metrics to retrieve',
-	},
+        /* -------------------------------------------------------------------------- */
+        /*                                videoPost:upload                            */
+        /* -------------------------------------------------------------------------- */
+        {
+                displayName: 'Source',
+                name: 'source',
+                type: 'options',
+                options: [
+                        {
+                                name: 'Upload From URL',
+                                value: 'PULL_FROM_URL',
+                        },
+                        {
+                                name: 'Upload File',
+                                value: 'FILE_UPLOAD',
+                        },
+                ],
+                default: 'PULL_FROM_URL',
+                displayOptions: {
+                        show: {
+                                resource: ['videoPost'],
+                                operation: ['upload'],
+                        },
+                },
+        },
+        {
+                displayName: 'Video URL',
+                name: 'videoUrl',
+                type: 'string',
+                default: '',
+                required: true,
+                displayOptions: {
+                        show: {
+                                resource: ['videoPost'],
+                                operation: ['upload'],
+                                source: ['PULL_FROM_URL'],
+                        },
+                },
+                description: 'Publicly accessible URL from which TikTok will pull the video',
+        },
+        {
+                displayName: 'Binary Property',
+                name: 'binaryProperty',
+                type: 'string',
+                default: 'data',
+                required: true,
+                displayOptions: {
+                        show: {
+                                resource: ['videoPost'],
+                                operation: ['upload'],
+                                source: ['FILE_UPLOAD'],
+                        },
+                },
+                description: 'Name of the binary property containing the video file to upload',
+        },
+        {
+                displayName: 'Privacy Level',
+                name: 'privacyLevel',
+                type: 'options',
+                options: [
+                        { name: 'Everyone', value: 'PUBLIC_TO_EVERYONE' },
+                        { name: 'Mutual Followers', value: 'MUTUAL_FOLLOW_FRIENDS' },
+                        { name: 'Followers of Creator', value: 'FOLLOWER_OF_CREATOR' },
+                        { name: 'Only Me', value: 'SELF_ONLY' },
+                ],
+                default: 'PUBLIC_TO_EVERYONE',
+                required: true,
+                displayOptions: {
+                        show: {
+                                resource: ['videoPost'],
+                                operation: ['upload'],
+                        },
+                },
+                description: 'Who can view this post',
+        },
+        {
+                displayName: 'Additional Fields',
+                name: 'additionalFields',
+                type: 'collection',
+                placeholder: 'Add Field',
+                default: {},
+                displayOptions: {
+                        show: {
+                                resource: ['videoPost'],
+                                operation: ['upload'],
+                        },
+                },
+                options: [
+                        {
+                                displayName: 'Brand Content Toggle',
+                                name: 'brandContentToggle',
+                                type: 'boolean',
+                                default: false,
+                                description: 'Whether the video promotes a third-party business',
+                        },
+                        {
+                                displayName: 'Brand Organic Toggle',
+                                name: 'brandOrganicToggle',
+                                type: 'boolean',
+                                default: false,
+                                description: "Whether the video promotes the creator's own business",
+                        },
+                        {
+                                displayName: 'Disable Comment',
+                                name: 'disableComment',
+                                type: 'boolean',
+                                default: false,
+                                description: 'Whether to disallow comments on this post',
+                        },
+                        {
+                                displayName: 'Disable Duet',
+                                name: 'disableDuet',
+                                type: 'boolean',
+                                default: false,
+                                description: 'Whether to disallow Duets for this post',
+                        },
+                        {
+                                displayName: 'Disable Stitch',
+                                name: 'disableStitch',
+                                type: 'boolean',
+                                default: false,
+                                description: 'Whether to disallow Stitches for this post',
+                        },
+                        {
+                                displayName: 'Is AI Generated',
+                                name: 'isAigc',
+                                type: 'boolean',
+                                default: false,
+                                description: 'Whether the video is AI generated content',
+                        },
+                        {
+                                displayName: 'Title',
+                                name: 'title',
+                                type: 'string',
+                                default: '',
+                                description: 'Caption for the video',
+                        },
+                        {
+                                displayName: 'Video Cover Timestamp (MS)',
+                                name: 'videoCoverTimestampMs',
+                                type: 'number',
+                                default: 0,
+                                description: 'Frame timestamp in milliseconds to use as the video cover',
+                        },
+                ],
+        },
 ];

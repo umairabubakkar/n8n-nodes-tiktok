@@ -12,80 +12,143 @@ export const photoPostOperations: INodeProperties[] = [
 			},
 		},
 		options: [
-			{
-				name: 'Upload',
-				value: 'upload',
-				description: 'Upload a photo to TikTok',
-				action: 'Upload photo',
-			},
+                        {
+                                name: 'Upload',
+                                value: 'upload',
+                                description: 'Upload photos to TikTok',
+                                action: 'Upload photos',
+                        },
 		],
 		default: 'upload',
 	},
 ];
 
 export const photoPostFields: INodeProperties[] = [
-	/* -------------------------------------------------------------------------- */
-	/*                                photoPost:upload                            */
-	/* -------------------------------------------------------------------------- */
-	{
-		displayName: 'Photo URL',
-		name: 'photoUrl',
-		type: 'string',
-		default: '',
-		required: true,
-		displayOptions: {
-			show: {
-				resource: ['photoPost'],
-				operation: ['upload'],
-			},
-		},
-		description: 'The URL of the photo to upload',
-	},
-	{
-		displayName: 'Additional Fields',
-		name: 'additionalFields',
-		type: 'collection',
-		placeholder: 'Add Field',
-		default: {},
-		displayOptions: {
-			show: {
-				resource: ['photoPost'],
-				operation: ['upload'],
-			},
-		},
-		options: [
+        /* -------------------------------------------------------------------------- */
+        /*                                photoPost:upload                            */
+        /* -------------------------------------------------------------------------- */
+        {
+                displayName: 'Photo URLs',
+                name: 'photoUrls',
+                type: 'string',
+                default: '',
+                required: true,
+                typeOptions: {
+                        multipleValues: true,
+                        multipleValueButtonText: 'Add URL',
+                },
+                displayOptions: {
+                        show: {
+                                resource: ['photoPost'],
+                                operation: ['upload'],
+                        },
+                },
+                description: 'Publicly accessible URLs of the photos to upload',
+        },
+        {
+                displayName: 'Cover Index',
+                name: 'photoCoverIndex',
+                type: 'number',
+                default: 0,
+                displayOptions: {
+                        show: {
+                                resource: ['photoPost'],
+                                operation: ['upload'],
+                        },
+                },
+                description: 'Index of the photo to use as the cover (starting from 0)',
+        },
+        {
+                displayName: 'Post Mode',
+                name: 'postMode',
+                type: 'options',
+                options: [
                         {
-                                displayName: 'Caption',
-                                name: 'caption',
+                                name: 'Direct Post',
+                                value: 'DIRECT_POST',
+                                description: "Directly post the content to the user's account",
+                        },
+                        {
+                                name: 'Media Upload',
+                                value: 'MEDIA_UPLOAD',
+                                description: 'Upload content for the user to finalize in TikTok',
+                        },
+                ],
+                default: 'MEDIA_UPLOAD',
+                displayOptions: {
+                        show: {
+                                resource: ['photoPost'],
+                                operation: ['upload'],
+                        },
+                },
+        },
+        {
+                displayName: 'Additional Fields',
+                name: 'additionalFields',
+                type: 'collection',
+                placeholder: 'Add Field',
+                default: {},
+                displayOptions: {
+                        show: {
+                                resource: ['photoPost'],
+                                operation: ['upload'],
+                        },
+                },
+                options: [
+                        {
+                                displayName: 'Auto Add Music',
+                                name: 'autoAddMusic',
+                                type: 'boolean',
+                                default: false,
+                                description: 'Whether to automatically add recommended music to the photos',
+                        },
+                        {
+                                displayName: 'Brand Content Toggle',
+                                name: 'brandContentToggle',
+                                type: 'boolean',
+                                default: false,
+                                description: 'Whether the content is a paid partnership to promote a third-party business',
+                        },
+                        {
+                                displayName: 'Brand Organic Toggle',
+                                name: 'brandOrganicToggle',
+                                type: 'boolean',
+                                default: false,
+                                description: "Whether the content promotes the creator's own business",
+                        },
+                        {
+                                displayName: 'Description',
+                                name: 'description',
                                 type: 'string',
                                 default: '',
-                                description: 'The caption for the photo post',
+                                description: 'Description of the photo post',
+                        },
+                        {
+                                displayName: 'Disable Comment',
+                                name: 'disableComment',
+                                type: 'boolean',
+                                default: false,
+                                description: 'Whether to disallow comments on this post',
                         },
                         {
                                 displayName: 'Privacy Level',
                                 name: 'privacyLevel',
                                 type: 'options',
                                 options: [
-                                        { name: 'Public', value: 'PUBLIC' },
-                                        { name: 'Friends', value: 'FRIENDS' },
-                                        { name: 'Private', value: 'PRIVATE' },
+                                        { name: 'Everyone', value: 'PUBLIC_TO_EVERYONE' },
+                                        { name: 'Mutual Followers', value: 'MUTUAL_FOLLOW_FRIENDS' },
+                                        { name: 'Followers of Creator', value: 'FOLLOWER_OF_CREATOR' },
+                                        { name: 'Only Me', value: 'SELF_ONLY' },
                                 ],
-                                default: 'PUBLIC',
+                                default: 'PUBLIC_TO_EVERYONE',
                                 description: 'Who can view this post',
                         },
                         {
-                                displayName: 'Schedule Time',
-                                name: 'scheduleTime',
-                                type: 'number',
-                                default: 0,
-                                description: 'UNIX timestamp for scheduled publication',
-                        },
-                        {
-                                displayName: 'Tags',
-                                name: 'tags',
+                                displayName: 'Title',
+                                name: 'title',
                                 type: 'string',
                                 default: '',
-                                description: 'Comma-separated list of tags for the photo post',
+                                description: 'Title of the photo post',
                         },
                 ],
         },
