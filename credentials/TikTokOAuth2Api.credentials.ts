@@ -4,7 +4,6 @@ import type {
 	ICredentialTestRequest,
 	ICredentialType,
 	IHttpRequestHelper,
-	IHttpRequestOptions,
 	INodeProperties,
 } from 'n8n-workflow';
 
@@ -35,67 +34,6 @@ type OAuthData = {
 };
 
 // ---------- Helper functions (TOP LEVEL, not methods) ----------
-
-function parseCallback(oauthData?: OAuthData) {
-	let qp: Record<string, string> = oauthData?.callbackQueryParameters ?? {};
-	if (oauthData?.rawQueryString) {
-		const params = new URLSearchParams(oauthData.rawQueryString);
-		for (const [k, v] of params.entries()) qp[k] = v;
-	}
-	if (oauthData?.code && !qp.code) qp.code = oauthData.code;
-	return {
-		code: qp.code as string | undefined,
-		state: qp.state as string | undefined,
-	};
-}
-
-function base64urlToJson<T = any>(b64url: string): T {
-	const b64 = b64url.replace(/-/g, '+').replace(/_/g, '/');
-	const padded = b64 + '==='.slice((b64.length + 3) % 4);
-	const raw = Buffer.from(padded, 'base64').toString('utf8');
-	return JSON.parse(raw) as T;
-}
-
-function getExpectedFromCreds(credentials: ICredentialDataDecryptedObject, oauthData?: OAuthData) {
-	const token =
-		(credentials.expectedStateToken as string | undefined)?.trim() ||
-		oauthData?.expected_state_token;
-	const cid =
-		(credentials.expectedStateCid as string | undefined)?.trim() || oauthData?.expected_state_cid;
-	const maxAgeMs =
-		(typeof credentials.stateMaxAgeMinutes === 'number' && credentials.stateMaxAgeMinutes > 0
-			? Math.floor(credentials.stateMaxAgeMinutes * 60_000)
-			: undefined) ||
-		oauthData?.expected_state_max_age_ms ||
-		10 * 60_000; // default 10 minutes
-	return { token, cid, maxAgeMs };
-}
-
-function validateStateOrThrow(
-	stateRaw: string,
-	expected: { token?: string; cid?: string; maxAgeMs?: number },
-) {
-	let parsed: { token?: string; cid?: string; createdAt?: number };
-	try {
-		parsed = base64urlToJson(stateRaw);
-	} catch {
-		throw new Error('TikTok OAuth2: state is not valid base64url JSON.');
-	}
-
-	if (expected.token && parsed.token !== expected.token) {
-		throw new Error('TikTok OAuth2: invalid state token (CSRF).');
-	}
-	if (expected.cid && parsed.cid !== expected.cid) {
-		throw new Error('TikTok OAuth2: invalid state cid (CSRF).');
-	}
-	if (expected.maxAgeMs && parsed.createdAt) {
-		const age = Date.now() - Number(parsed.createdAt);
-		if (age < 0 || age > expected.maxAgeMs) {
-			throw new Error('TikTok OAuth2: state expired or issued in the future (CSRF).');
-		}
-	}
-}
-
 async function fetchUserInfo(http: IHttpRequestHelper, accessToken: string) {
 	const resp = await http.helpers.httpRequest({
 		method: 'GET',
