@@ -3,10 +3,10 @@ import type {
 	IExecuteFunctions,
 	IHookFunctions,
 	ILoadOptionsFunctions,
-        INodeParameterResourceLocator,
-        JsonObject,
-        IRequestOptions,
-        IHttpRequestMethods,
+	INodeParameterResourceLocator,
+	JsonObject,
+	IRequestOptions,
+	IHttpRequestMethods,
 } from 'n8n-workflow';
 import { ApplicationError, NodeApiError } from 'n8n-workflow';
 import { URL } from 'url';
@@ -44,13 +44,12 @@ export async function tiktokApiRequest(
 			const { data } = await this.helpers.requestOAuth2.call(this, 'tiktokOAuth2Api', options);
 			return data;
 		}
-        } catch (error) {
-                // Wrap unknown errors to avoid accessing properties on undefined
-                const errObject: JsonObject = error instanceof Error
-                        ? { message: error.message }
-                        : { message: String(error) };
-                throw new NodeApiError(this.getNode(), errObject);
-        }
+	} catch (error) {
+		// Wrap unknown errors to avoid accessing properties on undefined
+		const errObject: JsonObject =
+			error instanceof Error ? { message: error.message } : { message: String(error) };
+		throw new NodeApiError(this.getNode(), errObject);
+	}
 }
 
 export async function tiktokApiRequestAllItems(
@@ -93,17 +92,16 @@ export function returnId(contentId: INodeParameterResourceLocator) {
 			throw new ApplicationError('Not a valid TikTok URL', {
 				level: 'warning',
 				cause: error,
-				tags: {},   // Add an empty object or specific tags here
-				extra: {}   // Add any extra information here
-			  });
-			  
+				tags: {}, // Add an empty object or specific tags here
+				extra: {}, // Add any extra information here
+			});
 		}
 	} else {
-		throw new ApplicationError(`The mode ${contentId.mode} is not valid!`, { level: 'warning' ,
-			tags: {},   // Add an empty object or specific tags here
-			extra: {}   // Add any extra information here
-		  });
-		  
+		throw new ApplicationError(`The mode ${contentId.mode} is not valid!`, {
+			level: 'warning',
+			tags: {}, // Add an empty object or specific tags here
+			extra: {}, // Add any extra information here
+		});
 	}
 }
 
@@ -123,8 +121,8 @@ export async function returnIdFromUsername(
 	} else {
 		throw new ApplicationError(`The username mode ${usernameRlc.mode} is not valid!`, {
 			level: 'warning',
-			tags: {},   // Add an empty object or specific tags here
-			extra: {}   // Add any extra information here
-		  });
+			tags: {}, // Add an empty object or specific tags here
+			extra: {}, // Add any extra information here
+		});
 	}
 }
