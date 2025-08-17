@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.4.0...v1.4.1) (2025-08-17)
+
+
+### Bug Fixes
+
+* correct TikTok search endpoints ([44e5e85](https://github.com/igabm/n8n-nodes-tiktok/commit/44e5e8591922ed210a5a25e1424a6413e2a47ede))
+
 # [1.4.0](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.3.3...v1.4.0) (2025-08-16)
 
 
