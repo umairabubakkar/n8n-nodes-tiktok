@@ -296,13 +296,13 @@ export class TikTokV2 implements INodeType {
 					const query = this.getNodeParameter('query', i) as string;
 					const cursor = this.getNodeParameter('cursor', i, 0) as number;
 					const limit = this.getNodeParameter('limit', i, 20) as number;
-					const qs: IDataObject = { keyword: query, cursor, max_count: limit };
+					const qs: IDataObject = { query, cursor, max_count: limit };
 					if (operation === 'hashtag') {
-						responseData = await tiktokApiRequest.call(this, 'GET', '/search/hashtag/', {}, qs);
+						responseData = await tiktokApiRequest.call(this, 'GET', '/hashtag/search/', {}, qs);
 						responseData = responseData.hashtags ?? responseData.results ?? responseData;
 					}
 					if (operation === 'sound') {
-						responseData = await tiktokApiRequest.call(this, 'GET', '/search/sound/', {}, qs);
+						responseData = await tiktokApiRequest.call(this, 'GET', '/sound/search/', {}, qs);
 						responseData = responseData.sounds ?? responseData.results ?? responseData;
 					}
 				}
