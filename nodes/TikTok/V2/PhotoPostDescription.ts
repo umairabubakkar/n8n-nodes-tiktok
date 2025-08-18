@@ -33,17 +33,14 @@ export const photoPostFields: INodeProperties[] = [
 		type: 'string',
 		default: '',
 		required: true,
-		typeOptions: {
-			multipleValues: true,
-			multipleValueButtonText: 'Add URL',
-		},
 		displayOptions: {
 			show: {
 				resource: ['photoPost'],
 				operation: ['upload'],
 			},
 		},
-		description: 'Publicly accessible URLs of the photos to upload',
+		description:
+			'Publicly accessible URLs of the photos to upload. Provide a single URL or a comma-separated list of URLs.',
 	},
 	{
 		displayName: 'Cover Index',

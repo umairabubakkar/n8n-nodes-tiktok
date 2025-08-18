@@ -227,7 +227,13 @@ export class TikTokV2 implements INodeType {
 
 				if (resource === 'photoPost') {
 					if (operation === 'upload') {
-						const photoUrls = this.getNodeParameter('photoUrls', i) as string[];
+						let photoUrls = this.getNodeParameter('photoUrls', i) as string | string[];
+						if (typeof photoUrls === 'string') {
+							photoUrls = photoUrls
+								.split(',')
+								.map((url) => url.trim())
+								.filter((url) => url);
+						}
 						const photoCoverIndex = this.getNodeParameter('photoCoverIndex', i) as number;
 						const postMode = this.getNodeParameter('postMode', i) as string;
 						const additionalFields = this.getNodeParameter('additionalFields', i) as IDataObject;
