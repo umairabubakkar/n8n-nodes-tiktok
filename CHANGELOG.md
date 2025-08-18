@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.4.1...v1.5.0) (2025-08-18)
+
+
+### Features
+
+* support comma-separated photo URLs ([9b6eb18](https://github.com/igabm/n8n-nodes-tiktok/commit/9b6eb1849b0624f765ea7af1f82565d27ae4318d))
+
 ## [1.4.1](https://github.com/igabm/n8n-nodes-tiktok/compare/v1.4.0...v1.4.1) (2025-08-17)
 
 
