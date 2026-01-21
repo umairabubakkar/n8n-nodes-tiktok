@@ -1,19 +1,19 @@
 {
-	"name": "@igabm/n8n-nodes-tiktok",
+	"name": "@umairabubakkar/n8n-nodes-tiktok-automation",
 	"version": "1.5.0",
 	"description": "n8n nodes for implementation for TikTok API",
 	"keywords": [
 		"n8n-community-node-package"
 	],
 	"license": "MIT",
-	"homepage": "https://github.com/igabm/",
+	"homepage": "https://github.com/umairabubakkar/",
 	"author": {
-		"name": "Gabriel MATIAS",
-		"email": "dev.gabriel.matias@gmail.com"
+		"name": "Umair Abubakkar",
+		"email": "dev.umair.abubakkar@gmail.com"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/igabm/n8n-nodes-tiktok.git"
+		"url": "git+https://github.com/umairabubakkar/n8n-nodes-tiktok-automation.git"
 	},
 	"engines": {
 		"node": ">=18.10",
@@ -67,6 +67,6 @@
 		"n8n-workflow": "*"
 	},
 	"bugs": {
-		"url": "https://github.com/igabm/n8n-nodes-tiktok/issues"
+		"url": "https://github.com/umairabubakkar/n8n-nodes-tiktok-automation/issues"
 	}
 }

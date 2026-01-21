@@ -53,13 +53,13 @@ For new users, check out the [Try it out](https://docs.n8n.io/try-it-out/) guide
 
 ## Dev Usage
 To link to a local n8n instance: (if dev workspace is ~/work/ )
-pnpm link ~/work/n8n-nodes-tiktok/
+pnpm link ~/work/n8n-nodes-tiktok-automation/
 
 docker run -it --rm \
   --name n8n \
   -p 5678:5678 \
   -v n8n_data:/home/node/.n8n \
-  -v ~/work/n8n-nodes-tiktok:/home/node/.n8n/nodes/node_modules/@igabm/n8n-nodes-tiktok \
+  -v ~/work/n8n-nodes-tiktok-automation:/home/node/.n8n/nodes/node_modules/@umairabubakkar/n8n-nodes-tiktok-automation \
   -e "NODE_FUNCTION_ALLOW_EXTERNAL=*" \
   -e "N8N_SECURE_COOKIE=false" \
   -e N8N_LOG_LEVEL=debug \
