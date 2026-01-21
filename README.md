@@ -20,15 +20,17 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 ## Operations
 
- The TikTok node supports the following operations:
- - **Video Post**: Upload a video via URL or file.
- - **Photo Post**: Upload one or more photos from verified URLs to TikTok, either as a direct post or for later editing in the TikTok app.
- - **Post Status**: Check the publishing status of a post using its publish ID.
- - **User Profile**: Retrieve profile information and statistics for the authenticated user.
+The TikTok node supports the following operations:
+
+- **Video Post**: Upload a video via URL or file.
+- **Photo Post**: Upload one or more photos from verified URLs to TikTok, either as a direct post or for later editing in the TikTok app.
+- **Post Status**: Check the publishing status of a post using its publish ID.
+- **User Profile**: Retrieve profile information and statistics for the authenticated user.
 
 ## Credentials
 
-To use this node, you need to authenticate with TikTok via OAuth2.  
+To use this node, you need to authenticate with TikTok via OAuth2.
+
 1. Create a TikTok Developer account and register an app.
 2. Add the **Content Posting API** product to your app.
 3. Obtain the required OAuth2 credentials for the app and configure them in n8n.
@@ -52,27 +54,27 @@ This node allows you to automate content posting to TikTok by uploading videos o
 For new users, check out the [Try it out](https://docs.n8n.io/try-it-out/) guide for general n8n workflow usage.
 
 ## Dev Usage
+
 To link to a local n8n instance: (if dev workspace is ~/work/ )
 pnpm link ~/work/n8n-nodes-tiktok-automation/
 
 docker run -it --rm \
-  --name n8n \
-  -p 5678:5678 \
-  -v n8n_data:/home/node/.n8n \
-  -v ~/work/n8n-nodes-tiktok-automation:/home/node/.n8n/nodes/node_modules/@umairabubakkar/n8n-nodes-tiktok-automation \
-  -e "NODE_FUNCTION_ALLOW_EXTERNAL=*" \
-  -e "N8N_SECURE_COOKIE=false" \
-  -e N8N_LOG_LEVEL=debug \
-  docker.n8n.io/n8nio/n8n
-
+ --name n8n \
+ -p 5678:5678 \
+ -v n8n_data:/home/node/.n8n \
+ -v ~/work/n8n-nodes-tiktok-automation:/home/node/.n8n/nodes/node_modules/@umairabubakkar/n8n-nodes-tiktok-automation \
+ -e "NODE_FUNCTION_ALLOW_EXTERNAL=\*" \
+ -e "N8N_SECURE_COOKIE=false" \
+ -e N8N_LOG_LEVEL=debug \
+ docker.n8n.io/n8nio/n8n
 
 To publish a new release:
-pnpm publish  --access public
+pnpm publish --access public
 
 ## Resources
 
-* [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
-* [TikTok API Documentation](https://developers.tiktok.com/doc/content-posting-api-get-started)
+- [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
+- [TikTok API Documentation](https://developers.tiktok.com/doc/content-posting-api-get-started)
 
 ## Version history
 

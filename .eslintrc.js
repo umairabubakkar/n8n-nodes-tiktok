@@ -10,17 +10,17 @@ module.exports = {
 		node: true,
 	},
 
-        parser: '@typescript-eslint/parser',
+	parser: '@typescript-eslint/parser',
 
-        parserOptions: {
-                project: ['./tsconfig.json'],
-                sourceType: 'module',
-                extraFileExtensions: ['.json'],
-        },
+	parserOptions: {
+		project: ['./tsconfig.json'],
+		sourceType: 'module',
+		extraFileExtensions: ['.json'],
+	},
 
 	extends: ['plugin:prettier/recommended'],
 
-        ignorePatterns: ['.eslintrc.js', '**/*.js', '**/node_modules/**', '**/dist/**'],
+	ignorePatterns: ['.eslintrc.js', '**/*.js', '**/node_modules/**', '**/dist/**'],
 
 	overrides: [
 		{
